@@ -48,7 +48,7 @@ public class SellerService {
         sellerRepository.delete(fromSeller);
     }
 
-    public Seller getSellerByMail(String mail){
+    protected Seller getSellerByMail(String mail){
         return sellerRepository.findSellerByMail(mail)
                 .orElseThrow(() -> new NotFoundException(""));
     }
@@ -63,12 +63,12 @@ public class SellerService {
         var seller = getSellerByMail(mail);
 
         if (seller.getConfirmCode().getCode() == code) {
-            seller.setActive(true);
-            confirmCodeRepository.deleteById(seller.getConfirmCode().getId());
-            sellerRepository.save(seller);
-            return sellerConverter.convert(seller);
+            return null;
         }
-        return null;
+        seller.setActive(true);
+        confirmCodeRepository.deleteById(seller.getConfirmCode().getId());
+        sellerRepository.save(seller);
+        return sellerConverter.convert(seller);
     }
 
     public SellerDto deactivateSeller(String mail) {

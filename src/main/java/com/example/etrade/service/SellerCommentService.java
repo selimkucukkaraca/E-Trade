@@ -9,7 +9,6 @@ import com.example.etrade.model.SellerComment;
 import com.example.etrade.repository.SellerCommentRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class SellerCommentService {
@@ -18,7 +17,8 @@ public class SellerCommentService {
     private final SellerService sellerService;
     private final SellerCommentConverter sellerCommentConverter;
 
-    public SellerCommentService(SellerCommentRepository sellerCommentRepository, SellerService sellerService, SellerCommentConverter sellerCommentConverter) {
+    public SellerCommentService(SellerCommentRepository sellerCommentRepository,
+                                SellerService sellerService, SellerCommentConverter sellerCommentConverter) {
         this.sellerCommentRepository = sellerCommentRepository;
         this.sellerService = sellerService;
         this.sellerCommentConverter = sellerCommentConverter;
@@ -34,20 +34,18 @@ public class SellerCommentService {
     }
 
     public void delete(String sellerCommentId) {
-        var fromSellerComment = getSellerBySellerCommentId(sellerCommentId);
-        sellerCommentRepository.delete(fromSellerComment);
+        var fromSellerComment = sellerCommentRepository
+                .findSellerCommentBySellerCommentId(sellerCommentId);
+        sellerCommentRepository.delete(fromSellerComment.get());
     }
 
-    public SellerComment getSellerBySellerCommentId(String sellerCommentId){
-        return sellerCommentRepository.findSellerCommentBySellerCommentId(sellerCommentId)
-                .orElseThrow(()-> new NotFoundException(""));
+    public SellerCommentDto getSellerBySellerCommentId(String sellerCommentId){
+        SellerComment sellerComment = sellerCommentRepository.findSellerCommentBySellerCommentId(sellerCommentId)
+                .orElseThrow(() -> new NotFoundException(""));
+        return sellerCommentConverter.convert(sellerComment);
     }
 
-    public List<SellerComment> getAll() {
-        return sellerCommentRepository.findAll();
-    }
-
-    public SellerCommentDto getBySellerCommetId(String sellerCommentId){
+    public SellerCommentDto getBySellerCommentId(String sellerCommentId){
         var fromDbSellerComment = sellerCommentRepository.findSellerCommentBySellerCommentId(sellerCommentId)
                 .orElseThrow(()-> new NotFoundException(""));
         return sellerCommentConverter.convert(fromDbSellerComment);

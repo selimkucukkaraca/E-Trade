@@ -8,10 +8,11 @@ import lombok.Data;
 public class ProductDto extends BaseDto{
 
     private String productName;
-    private String productBrand;
     private String productDetails;
     private double productPrice;
     private boolean stock;
     private String productImageUrl;
+    private String productId;
+    private BrandDto brand;
 
 }

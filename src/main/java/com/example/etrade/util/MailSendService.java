@@ -13,7 +13,7 @@ public class MailSendService {
 
     public void sendMail(String to, String title, String body){
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom("virtual-pet-shop");
+        mailMessage.setFrom("e-trade");
         mailMessage.setTo(to);
         mailMessage.setSubject(title);
         mailMessage.setText(body);

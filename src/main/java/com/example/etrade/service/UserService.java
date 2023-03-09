@@ -7,7 +7,6 @@ import com.example.etrade.exception.NotFoundException;
 import com.example.etrade.exception.generic.GenericExistException;
 import com.example.etrade.model.ConfirmCode;
 import com.example.etrade.model.User;
-import com.example.etrade.repository.ConfirmCodeRepository;
 import com.example.etrade.repository.UserRepository;
 import com.example.etrade.util.MailSendService;
 import org.springframework.stereotype.Service;
@@ -20,17 +19,14 @@ public class UserService {
 
     private final MailSendService mailSendService;
     private final ConfirmCodeService confirmCodeService;
-    private final ConfirmCodeRepository confirmCodeRepository;
     private final UserConverter userConverter;
     private final UserRepository userRepository;
 
 
     public UserService(MailSendService mailSendService, ConfirmCodeService confirmCodeService,
-                       ConfirmCodeRepository confirmCodeRepository, UserConverter userConverter,
-                       UserRepository userRepository) {
+                       UserConverter userConverter, UserRepository userRepository) {
         this.mailSendService = mailSendService;
         this.confirmCodeService = confirmCodeService;
-        this.confirmCodeRepository = confirmCodeRepository;
         this.userConverter = userConverter;
         this.userRepository = userRepository;
     }
@@ -49,11 +45,6 @@ public class UserService {
         userRepository.delete(fromUser);
     }
 
-    public User getUserByMail(String mail){
-        return userRepository.findUserByMail(mail)
-                .orElseThrow(() -> new NotFoundException(""));
-    }
-
     public UserDto getByMail(String mail){
         var fromDbUser = userRepository.findUserByMail(mail)
                 .orElseThrow(() -> new NotFoundException("Mail not found: " + mail));
@@ -63,13 +54,15 @@ public class UserService {
     public UserDto activeUser(String mail,int code){
         var user = getUserByMail(mail);
 
-        if (user.getConfirmCode().getCode() == code) {
-            user.setActive(true);
-            confirmCodeRepository.deleteById(user.getConfirmCode().getId());
-            userRepository.save(user);
-            return userConverter.convert(user);
+        if (user.getConfirmCode().getCode() != code) {
+            return null;
+
         }
-        return null;
+
+        user.setActive(true);
+        confirmCodeService.delete(user.getConfirmCode());
+        userRepository.save(user);
+        return userConverter.convert(user);
     }
 
     public UserDto deactivateUser(String mail) {
@@ -90,6 +83,11 @@ public class UserService {
 
         String description = String.format(CONFIRM_CODE_DESCRIPTION, confirmCode.getCode());
         mailSendService.sendMail(user.getMail(),CONFIRM_CODE_TITLE,description);
+    }
+
+    protected User getUserByMail(String mail){
+        return userRepository.findUserByMail(mail)
+                .orElseThrow(() -> new NotFoundException(""));
     }
 
 }

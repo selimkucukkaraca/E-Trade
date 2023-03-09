@@ -3,6 +3,8 @@ package com.example.etrade.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @ToString
@@ -15,7 +17,6 @@ public class Product extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String productName;
-    private String productBrand;
     private String productDetails;
     private double productPrice;
     private boolean stock;
@@ -24,13 +25,16 @@ public class Product extends BaseEntity{
     private Seller seller;
     @ManyToOne
     private Category category;
+    private String productId = UUID.randomUUID().toString();
+    @ManyToOne
+    private Brand brand;
 
-    public Product(String productName, String productBrand, String productDetails,
+    public Product(String productName,String productDetails,
                    double productPrice,String productImageUrl) {
         this.productName = productName;
-        this.productBrand = productBrand;
         this.productDetails = productDetails;
         this.productPrice = productPrice;
         this.productImageUrl = productImageUrl;
+
     }
 }
