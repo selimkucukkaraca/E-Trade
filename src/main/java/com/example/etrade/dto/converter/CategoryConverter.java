@@ -1,16 +1,30 @@
 package com.example.etrade.dto.converter;
 
 import com.example.etrade.dto.CategoryDto;
+import com.example.etrade.dto.SubCategoryDto;
 import com.example.etrade.dto.request.CreateCategoryRequest;
 import com.example.etrade.model.Category;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class CategoryConverter {
 
+    private final SubCategoryConverter subCategoryConverter;
+
+    public CategoryConverter(SubCategoryConverter subCategoryConverter) {
+        this.subCategoryConverter = subCategoryConverter;
+    }
+
     public CategoryDto convert(Category from){
+        List<SubCategoryDto> subCategoryDtoList = from.getSubCategories()
+                .stream()
+                .map(subCategoryConverter::convert).toList();
+
         return new CategoryDto(
-                from.getCategoryName()
+                from.getCategoryName(),
+                subCategoryDtoList
         );
     }
 
