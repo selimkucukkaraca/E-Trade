@@ -3,6 +3,8 @@ package com.example.etrade.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -21,7 +23,9 @@ public class User extends BaseEntity{
     private boolean isActive = false;
     @OneToOne
     private ConfirmCode confirmCode;
-
+    @OneToMany
+    @ToString.Exclude
+    private List<Address> address;
 
     public User(String username, String password, String mail, String imageUrl) {
         this.username = username;

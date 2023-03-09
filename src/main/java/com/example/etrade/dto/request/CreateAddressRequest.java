@@ -10,5 +10,6 @@ public class CreateAddressRequest {
     private String district;
     private String street;
     private String apartmentNumber;
+    private String phoneNumber;
 
 }

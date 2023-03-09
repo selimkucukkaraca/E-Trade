@@ -3,6 +3,8 @@ package com.example.etrade.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @ToString
@@ -19,14 +21,16 @@ public class Address extends BaseEntity{
     private String district;
     private String street;
     private String apartmentNumber;
-    @ManyToOne
-    private User user;
+    private String phoneNumber;
+    private String addressId = UUID.randomUUID().toString();
 
-    public Address(String country, String city, String district, String street, String apartmentNumber) {
+    public Address(String country, String city, String district, String street,
+                   String apartmentNumber, String phoneNumber ) {
         this.country = country;
         this.city = city;
         this.district = district;
         this.street = street;
         this.apartmentNumber = apartmentNumber;
+        this.phoneNumber = phoneNumber;
     }
 }
