@@ -36,13 +36,11 @@ public class ProductService {
         var fromDbProduct = productRepository.findProductByProductId(productId)
                 .orElseThrow(() -> new NotFoundException("ProductId not found: " + productId));
         return productConverter.convert(fromDbProduct);
-
     }
 
     protected Product getProductObjectByProductId(String productId){
         return productRepository.findProductByProductId(productId)
                 .orElseThrow(() -> new NotFoundException(""));
-
     }
 
     protected void updateProduct(Product product){

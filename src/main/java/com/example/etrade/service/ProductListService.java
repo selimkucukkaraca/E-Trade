@@ -1,7 +1,7 @@
 package com.example.etrade.service;
 
-import com.example.etrade.dto.ProductDto;
 import com.example.etrade.dto.converter.ProductConverter;
+import com.example.etrade.model.Product;
 import com.example.etrade.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +19,9 @@ public class ProductListService {
         this.productConverter = productConverter;
     }
 
-    public List<ProductDto> getProductByProductName(String productName){
+    public List<Product> getProductByProductName(String productName){
         return productRepository.getProductByProductName(productName);
     }
-
 
 
 }

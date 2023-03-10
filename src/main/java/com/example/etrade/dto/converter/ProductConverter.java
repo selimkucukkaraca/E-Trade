@@ -3,6 +3,7 @@ package com.example.etrade.dto.converter;
 import com.example.etrade.dto.BrandDto;
 import com.example.etrade.dto.ProductDto;
 import com.example.etrade.dto.request.CreateProductRequest;
+import com.example.etrade.model.Category;
 import com.example.etrade.model.Product;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +28,8 @@ public class ProductConverter {
                 request.getProductDetails(),
                 request.getProductPrice(),
                 request.getStock(),
-                request.getProductImageUrl()
+                request.getProductImageUrl(),
+                new Category(request.getCategoryName())
         );
     }
 }

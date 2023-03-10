@@ -10,4 +10,5 @@ public class CreateProductRequest {
     private int stock;
     private String productImageUrl;
     private String brand;
+    private String categoryName;
 }
