@@ -8,7 +8,8 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 public class ETradeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ETradeApplication.class, args);
+			SpringApplication.run(ETradeApplication.class, args);
+
 	}
 
 }

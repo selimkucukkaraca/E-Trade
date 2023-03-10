@@ -3,7 +3,7 @@ package com.example.etrade.dto.request;
 import lombok.Data;
 
 @Data
-public class CreateCreditCardRequest {
+public class CreditCardRequest {
 
     private String cardNumber;
     private int cvv;

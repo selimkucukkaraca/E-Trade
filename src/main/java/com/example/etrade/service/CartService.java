@@ -37,6 +37,10 @@ public class CartService {
         return cartConverter.convert(cart);
     }
 
+    public Cart getCart(String cartId) {
+        return cartRepository.findCartByCartId(cartId);
+    }
+
     public void deleteByCartId(String cartId){
         cartRepository.deleteByCartId(cartId);
     }
