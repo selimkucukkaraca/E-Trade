@@ -14,7 +14,7 @@ public class ProductConverter {
                 from.getProductName(),
                 from.getProductDetails(),
                 from.getProductPrice(),
-                from.isStock(),
+                from.getStock(),
                 from.getProductImageUrl(),
                 from.getProductId(),
                 new BrandDto(from.getBrand().getBrand())
@@ -26,6 +26,7 @@ public class ProductConverter {
                 request.getProductName(),
                 request.getProductDetails(),
                 request.getProductPrice(),
+                request.getStock(),
                 request.getProductImageUrl()
         );
     }

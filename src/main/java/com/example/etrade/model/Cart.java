@@ -3,6 +3,9 @@ package com.example.etrade.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+import java.util.UUID;
+
 @Getter
 @Setter
 @ToString
@@ -14,20 +17,15 @@ public class Cart extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private double quantity;
-    private String productName;
-    private String productDetails;
-    private double productPrice;
-    private String productImageUrl;
+    @OneToMany
+    @ToString.Exclude
+    private List<Product> product;
     @ManyToOne
-    private Seller seller;
+    private User user;
+    private String cartId = UUID.randomUUID().toString();
 
-    public Cart(double quantity, String productName, String productDetails,
-                double productPrice, String productImageUrl) {
-        this.quantity = quantity;
-        this.productName = productName;
-        this.productDetails = productDetails;
-        this.productPrice = productPrice;
-        this.productImageUrl = productImageUrl;
+    public Cart(List<Product> product, User user) {
+        this.product = product;
+        this.user = user;
     }
 }

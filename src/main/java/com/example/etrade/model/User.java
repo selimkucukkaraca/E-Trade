@@ -33,4 +33,8 @@ public class User extends BaseEntity{
         this.mail = mail;
         this.imageUrl = imageUrl;
     }
+
+    public User(String mail) {
+        this.mail = mail;
+    }
 }

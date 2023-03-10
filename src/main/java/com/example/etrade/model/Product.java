@@ -19,7 +19,7 @@ public class Product extends BaseEntity{
     private String productName;
     private String productDetails;
     private double productPrice;
-    private boolean stock;
+    private int stock;
     private String productImageUrl;
     @ManyToOne
     private Seller seller;
@@ -30,11 +30,15 @@ public class Product extends BaseEntity{
     private Brand brand;
 
     public Product(String productName,String productDetails,
-                   double productPrice,String productImageUrl) {
+                   double productPrice,int stock, String productImageUrl) {
         this.productName = productName;
         this.productDetails = productDetails;
         this.productPrice = productPrice;
+        this.stock = stock;
         this.productImageUrl = productImageUrl;
+    }
 
+    public Product(String productId) {
+        this.productId = productId;
     }
 }
