@@ -6,7 +6,6 @@ import com.example.etrade.dto.request.CreateProductRequest;
 import com.example.etrade.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class ProductService {
@@ -25,13 +24,7 @@ public class ProductService {
         return productConverter.convert(saved);
     }
 
-    public List<ProductDto> getProductByProductName(String productName){
-        return productRepository.getProductByProductName(productName);
-    }
-
     public void deleteByProductId(String productId){
         productRepository.deleteProductByProductId(productId);
     }
-
-
 }

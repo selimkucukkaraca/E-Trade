@@ -5,7 +5,6 @@ import com.example.etrade.dto.converter.SellerCommentConverter;
 import com.example.etrade.dto.request.CreateSellerCommentRequest;
 import com.example.etrade.exception.NotFoundException;
 import com.example.etrade.exception.generic.GenericExistException;
-import com.example.etrade.model.SellerComment;
 import com.example.etrade.repository.SellerCommentRepository;
 import org.springframework.stereotype.Service;
 
@@ -40,15 +39,9 @@ public class SellerCommentService {
     }
 
     public SellerCommentDto getSellerBySellerCommentId(String sellerCommentId){
-        SellerComment sellerComment = sellerCommentRepository.findSellerCommentBySellerCommentId(sellerCommentId)
+        var sellerComment = sellerCommentRepository.findSellerCommentBySellerCommentId(sellerCommentId)
                 .orElseThrow(() -> new NotFoundException(""));
         return sellerCommentConverter.convert(sellerComment);
     }
 
-    public SellerCommentDto getBySellerCommentId(String sellerCommentId){
-        var fromDbSellerComment = sellerCommentRepository.findSellerCommentBySellerCommentId(sellerCommentId)
-                .orElseThrow(()-> new NotFoundException(""));
-        return sellerCommentConverter.convert(fromDbSellerComment);
-
-    }
 }
