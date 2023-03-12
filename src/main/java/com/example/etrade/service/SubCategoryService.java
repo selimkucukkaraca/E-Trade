@@ -6,7 +6,6 @@ import com.example.etrade.dto.request.CreateSubCategoryRequest;
 import com.example.etrade.repository.SubCategoryRepository;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class SubCategoryService {
 

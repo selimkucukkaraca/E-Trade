@@ -10,7 +10,6 @@ public class AddressConverter {
 
     public AddressDto convert(Address from){
         return new AddressDto(
-                from.getCountry(),
                 from.getCity(),
                 from.getDistrict(),
                 from.getStreet(),
@@ -21,7 +20,6 @@ public class AddressConverter {
 
     public Address toEntity(CreateAddressRequest request){
         return new Address(
-                request.getCountry(),
                 request.getCity(),
                 request.getDistrict(),
                 request.getStreet(),

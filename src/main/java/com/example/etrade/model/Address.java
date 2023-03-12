@@ -16,7 +16,6 @@ public class Address extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String country;
     private String city;
     private String district;
     private String street;
@@ -24,9 +23,8 @@ public class Address extends BaseEntity{
     private String phoneNumber;
     private String addressId = UUID.randomUUID().toString();
 
-    public Address(String country, String city, String district, String street,
+    public Address(String city, String district, String street,
                    String apartmentNumber, String phoneNumber ) {
-        this.country = country;
         this.city = city;
         this.district = district;
         this.street = street;

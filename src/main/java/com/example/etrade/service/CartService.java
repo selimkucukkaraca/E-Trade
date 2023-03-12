@@ -37,7 +37,7 @@ public class CartService {
         return cartConverter.convert(cart);
     }
 
-    public Cart getCart(String cartId) {
+    protected Cart getCart(String cartId) {
         return cartRepository.findCartByCartId(cartId);
     }
 

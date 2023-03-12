@@ -1,6 +1,7 @@
 package com.example.etrade.service;
 
-import com.example.etrade.dto.request.CreditCardRequest;
+import com.example.etrade.dto.request.ConfirmCartRequest;
+import com.example.etrade.model.Address;
 import com.example.etrade.model.ConfirmedCart;
 import org.springframework.stereotype.Service;
 
@@ -11,27 +12,32 @@ public class BuyProductService {
     private final ConfirmedCardService confirmedCardService;
     private final CartService cartService;
     private final UserService userService;
+    private final AddressService addressService;
 
     public BuyProductService(BankAccountService bankAccountService,
                              ConfirmedCardService confirmedCardService,
-                             CartService cartService, UserService userService) {
+                             CartService cartService, UserService userService,
+                             AddressService addressService) {
         this.bankAccountService = bankAccountService;
         this.confirmedCardService = confirmedCardService;
         this.cartService = cartService;
         this.userService = userService;
+        this.addressService = addressService;
     }
 
-    public void buy(CreditCardRequest creditCardRequest, String cartId, String userMail){ //TODO promo code
-        var cart = cartService.getCart(cartId);
-        var bankAccount = bankAccountService.getByCardNumber(creditCardRequest.getCardNumber());
-        var user = userService.getUserByMail(userMail);
+    public void buy(ConfirmCartRequest confirmCartRequest){
+        var cart = cartService.getCart(confirmCartRequest.getCartId());
+        var bankAccount = bankAccountService.getByCardNumber(confirmCartRequest.getCardNumber());
+        var user = userService.getUserByMail(confirmCartRequest.getUserMail());
 
-        if (bankAccountService.validateCreditCard(creditCardRequest)) {
+        if (bankAccountService.validateCreditCard(confirmCartRequest)) {
             cart.getProduct()
                     .forEach((product) -> {
                         if (bankAccount.getBalance() >= product.getProductPrice()) {
                             bankAccount.setBalance(bankAccount.getBalance() - product.getProductPrice());
-                            cartService.deleteByCartId(cartId);
+                            cartService.deleteByCartId(confirmCartRequest.getCartId());
+                            Address address = addressService.save(confirmCartRequest.getAddress());
+                            user.getAddress().add(address);
                         }
                     });
 

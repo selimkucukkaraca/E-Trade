@@ -3,6 +3,7 @@ package com.example.etrade.service;
 import com.example.etrade.dto.AddressDto;
 import com.example.etrade.dto.converter.AddressConverter;
 import com.example.etrade.dto.request.CreateAddressRequest;
+import com.example.etrade.model.Address;
 import com.example.etrade.repository.AddressRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +18,9 @@ public class AddressService {
         this.addressConverter = addressConverter;
     }
 
-    public AddressDto save(CreateAddressRequest request){
+    public Address save(CreateAddressRequest request){
         var saved = addressConverter.toEntity(request);
-        addressRepository.save(saved);
-        return addressConverter.convert(saved);
+        return addressRepository.save(saved);
     }
 
     public void delete(String addressId){

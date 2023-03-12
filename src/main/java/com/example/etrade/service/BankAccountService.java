@@ -1,6 +1,6 @@
 package com.example.etrade.service;
 
-import com.example.etrade.dto.request.CreditCardRequest;
+import com.example.etrade.dto.request.ConfirmCartRequest;
 import com.example.etrade.model.BankAccount;
 import com.example.etrade.repository.BankAccountRepository;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,15 @@ public class BankAccountService {
         this.bankAccountRepository = bankAccountRepository;
     }
 
-    public BankAccount getByCardNumber(String cardNumber){
+    protected BankAccount getByCardNumber(String cardNumber){
         return bankAccountRepository.findBankAccountByCardNumber(cardNumber);
     }
 
-    public BankAccount save(BankAccount bankAccount){
+    protected BankAccount save(BankAccount bankAccount){
         return bankAccountRepository.save(bankAccount);
     }
 
-    public boolean validateCreditCard(CreditCardRequest request) {
+    protected boolean validateCreditCard(ConfirmCartRequest request) {
         BankAccount bankAccount = bankAccountRepository.findBankAccountByCardNumber(request.getCardNumber());
 
         return request.getExpirationDate().equals(bankAccount.getExpirationDate())

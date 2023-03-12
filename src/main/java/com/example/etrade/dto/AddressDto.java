@@ -7,7 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class AddressDto extends BaseDto{
 
-    private String country;
     private String city;
     private String district;
     private String street;
