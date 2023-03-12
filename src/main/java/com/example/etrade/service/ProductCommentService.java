@@ -33,7 +33,7 @@ public class ProductCommentService {
         productCommentRepository.deleteByProductCommentId(productCommentId);
     }
 
-    public ProductCommentDto getProductCommentByProductCommentId(String productCommentId){
+    public ProductCommentDto getByProductCommentId(String productCommentId){
         var productComment = productCommentRepository
                 .findProductCommentByProductCommentId(productCommentId)
                 .orElseThrow(() -> new NotFoundException(""));

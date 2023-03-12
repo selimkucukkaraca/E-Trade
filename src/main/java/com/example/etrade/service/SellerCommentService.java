@@ -8,7 +8,6 @@ import com.example.etrade.exception.generic.GenericExistException;
 import com.example.etrade.repository.SellerCommentRepository;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class SellerCommentService {
 

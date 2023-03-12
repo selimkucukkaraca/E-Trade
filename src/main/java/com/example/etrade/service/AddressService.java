@@ -3,7 +3,6 @@ package com.example.etrade.service;
 import com.example.etrade.dto.AddressDto;
 import com.example.etrade.dto.converter.AddressConverter;
 import com.example.etrade.dto.request.CreateAddressRequest;
-import com.example.etrade.model.Address;
 import com.example.etrade.repository.AddressRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +28,7 @@ public class AddressService {
         addressRepository.deleteAddressByAddressId(String.valueOf(fromAddress));
     }
 
-    protected Address getAddressByAddressId(String addressId){
+    public AddressDto getAddressByAddressId(String addressId){
         return addressRepository.findAddressByAddressId(addressId)
                 .orElseThrow(()-> new RuntimeException(""));
     }
