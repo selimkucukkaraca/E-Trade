@@ -36,7 +36,7 @@ public class ConfirmedCardService {
 
     public ConfirmedCartDto toDto(ConfirmedCart confirmedCart) {
         return new ConfirmedCartDto(
-                cartConverter.convert(confirmedCart.getCarts()),
+                cartConverter.convertToDto(confirmedCart.getCarts()),
                 confirmedCart.getConfirmedId()
         );
     }

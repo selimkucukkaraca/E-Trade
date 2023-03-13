@@ -15,7 +15,7 @@ public class ProductConverter {
         this.brandConverter = brandConverter;
     }
 
-    public ProductDto convert(Product from){
+    public ProductDto convertToDto(Product from){
         return new ProductDto(
                 from.getProductName(),
                 from.getProductDetails(),
@@ -23,7 +23,7 @@ public class ProductConverter {
                 from.getStock(),
                 from.getProductImageUrl(),
                 from.getProductId(),
-                brandConverter.convert(from.getBrand())
+                brandConverter.convertToDto(from.getBrand())
         );
     }
 

@@ -34,7 +34,7 @@ public class CartService {
         fromProduct.setStock(fromProduct.getStock()-1);
         cartRepository.save(cart);
         productService.updateProduct(fromProduct);
-        return cartConverter.convert(cart);
+        return cartConverter.convertToDto(cart);
     }
 
     protected Cart getCart(String cartId) {

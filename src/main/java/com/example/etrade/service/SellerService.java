@@ -40,7 +40,7 @@ public class SellerService {
             throw new GenericExistException("Seller already exist, mail: " + saved.getMail());
         }
         sellerRepository.save(saved);
-        return sellerConverter.convert(saved);
+        return sellerConverter.convertToDto(saved);
     }
 
     public void delete(String mail){
@@ -56,7 +56,7 @@ public class SellerService {
     public SellerDto getByMail(String mail){
         var fromDbSeller = sellerRepository.findSellerByMail(mail)
                 .orElseThrow(() -> new NotFoundException("Mail not found: " + mail));
-        return sellerConverter.convert(fromDbSeller);
+        return sellerConverter.convertToDto(fromDbSeller);
     }
 
     public SellerDto activeSeller(String mail,int code){
@@ -68,7 +68,7 @@ public class SellerService {
         seller.setActive(true);
         confirmCodeRepository.deleteById(seller.getConfirmCode().getId());
         sellerRepository.save(seller);
-        return sellerConverter.convert(seller);
+        return sellerConverter.convertToDto(seller);
     }
 
     public SellerDto deactivateSeller(String mail) {
@@ -76,7 +76,7 @@ public class SellerService {
         fromDbSeller.setActive(false);
         sellerRepository.save(fromDbSeller);
 
-        return sellerConverter.convert(fromDbSeller);
+        return sellerConverter.convertToDto(fromDbSeller);
     }
 
     public void sendConfirmCode(String mail){

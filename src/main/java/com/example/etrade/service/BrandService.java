@@ -21,7 +21,7 @@ public class BrandService {
     public BrandDto save(CreateBrandRequest request){
         var saved = brandConverter.toEntity(request);
         brandRepository.save(saved);
-        return brandConverter.convert(saved);
+        return brandConverter.convertToDto(saved);
     }
 
     public void deleteBrandByBrandId(String brandId){

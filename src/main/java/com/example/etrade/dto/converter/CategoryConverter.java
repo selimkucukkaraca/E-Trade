@@ -17,10 +17,10 @@ public class CategoryConverter {
         this.subCategoryConverter = subCategoryConverter;
     }
 
-    public CategoryDto convert(Category from){
+    public CategoryDto convertToDto(Category from){
         List<SubCategoryDto> subCategoryDtoList = from.getSubCategories()
                 .stream()
-                .map(subCategoryConverter::convert).toList();
+                .map(subCategoryConverter::convertToDto).toList();
 
         return new CategoryDto(
                 from.getCategoryName(),

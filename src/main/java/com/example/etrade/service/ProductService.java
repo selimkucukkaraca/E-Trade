@@ -25,7 +25,7 @@ public class ProductService {
     public ProductDto save(CreateProductRequest request){
         var saved = productConverter.toEntity(request);
         productRepository.save(saved);
-        return productConverter.convert(saved);
+        return productConverter.convertToDto(saved);
     }
 
     public void deleteByProductId(String productId){
@@ -35,7 +35,7 @@ public class ProductService {
     public ProductDto getByProductId(String productId){
         var fromDbProduct = productRepository.findProductByProductId(productId)
                 .orElseThrow(() -> new NotFoundException("ProductId not found: " + productId));
-        return productConverter.convert(fromDbProduct);
+        return productConverter.convertToDto(fromDbProduct);
     }
 
     protected Product getProductObjectByProductId(String productId){

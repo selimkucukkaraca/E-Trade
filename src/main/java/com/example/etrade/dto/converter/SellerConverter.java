@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SellerConverter {
 
-    public SellerDto convert(Seller from){
+    public SellerDto convertToDto(Seller from){
         return new SellerDto(
                 from.getUsername(),
                 from.getMail(),

@@ -26,7 +26,7 @@ public class ProductCommentService {
             throw new GenericExistException("you must rating by star ");
         }
         productCommentRepository.save(saved);
-        return productCommentConverter.convert(saved);
+        return productCommentConverter.convertToDto(saved);
     }
 
     public void delete(String productCommentId){
@@ -37,7 +37,7 @@ public class ProductCommentService {
         var productComment = productCommentRepository
                 .findProductCommentByProductCommentId(productCommentId)
                 .orElseThrow(() -> new NotFoundException(""));
-        return productCommentConverter.convert(productComment);
+        return productCommentConverter.convertToDto(productComment);
     }
 
 }

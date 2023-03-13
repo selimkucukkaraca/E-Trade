@@ -18,13 +18,13 @@ public class CartConverter {
         this.userConverter = userConverter;
     }
 
-    public CartDto convert(Cart from){
+    public CartDto convertToDto(Cart from){
         List<ProductDto> productDtos = from.getProduct()
                 .stream()
-                .map(productConverter::convert).toList();
+                .map(productConverter::convertToDto).toList();
         return new CartDto(
                 productDtos,
-                userConverter.convert(from.getUser())
+                userConverter.convertToDto(from.getUser())
         );
     }
 

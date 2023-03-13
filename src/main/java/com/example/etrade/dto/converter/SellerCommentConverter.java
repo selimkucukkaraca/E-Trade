@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SellerCommentConverter {
 
-    public SellerCommentDto convert(SellerComment from){
+    public SellerCommentDto convertToDto(SellerComment from){
         return new SellerCommentDto(
                 from.getTitle(),
                 from.getBody(),

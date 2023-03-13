@@ -27,7 +27,7 @@ public class SubCategoryService {
         subCategoryRepository.save(saved);
         category.getSubCategories().add(saved);
         categoryService.updateCategory(category);
-        return subCategoryConverter.convert(saved);
+        return subCategoryConverter.convertToDto(saved);
     }
 
     public void delete(String subCategoryName){

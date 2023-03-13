@@ -37,7 +37,7 @@ public class UserService {
             throw new GenericExistException("User already exist, mail: " + saved.getMail());
         }
         userRepository.save(saved);
-        return userConverter.convert(saved);
+        return userConverter.convertToDto(saved);
     }
 
     public void delete(String mail){
@@ -48,7 +48,7 @@ public class UserService {
     public UserDto getByMail(String mail){
         var fromDbUser = userRepository.findUserByMail(mail)
                 .orElseThrow(() -> new NotFoundException("Mail not found: " + mail));
-        return userConverter.convert(fromDbUser);
+        return userConverter.convertToDto(fromDbUser);
     }
 
     public UserDto activeUser(String mail,int code){
@@ -62,7 +62,7 @@ public class UserService {
         user.setActive(true);
         confirmCodeService.delete(user.getConfirmCode());
         userRepository.save(user);
-        return userConverter.convert(user);
+        return userConverter.convertToDto(user);
     }
 
     public UserDto deactivateUser(String mail) {
@@ -70,7 +70,7 @@ public class UserService {
         fromDbUser.setActive(false);
         userRepository.save(fromDbUser);
 
-        return userConverter.convert(fromDbUser);
+        return userConverter.convertToDto(fromDbUser);
     }
 
     public void sendConfirmCode(String mail){

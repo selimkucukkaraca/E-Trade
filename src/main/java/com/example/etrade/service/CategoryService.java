@@ -22,7 +22,7 @@ public class CategoryService {
     public CategoryDto save(CreateCategoryRequest request){
         var saved = categoryConverter.toEntity(request);
         categoryRepository.save(saved);
-        return categoryConverter.convert(saved);
+        return categoryConverter.convertToDto(saved);
     }
 
     public void deleteCategory(String categoryName){

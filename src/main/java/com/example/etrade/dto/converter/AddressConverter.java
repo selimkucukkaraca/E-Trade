@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AddressConverter {
 
-    public AddressDto convert(Address from){
+    public AddressDto convertToDto(Address from){
         return new AddressDto(
                 from.getCity(),
                 from.getDistrict(),
