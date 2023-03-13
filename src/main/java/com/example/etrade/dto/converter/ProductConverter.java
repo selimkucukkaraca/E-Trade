@@ -1,6 +1,5 @@
 package com.example.etrade.dto.converter;
 
-import com.example.etrade.dto.BrandDto;
 import com.example.etrade.dto.ProductDto;
 import com.example.etrade.dto.request.CreateProductRequest;
 import com.example.etrade.model.Category;
@@ -10,6 +9,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductConverter {
 
+    private final BrandConverter brandConverter;
+
+    public ProductConverter(BrandConverter brandConverter) {
+        this.brandConverter = brandConverter;
+    }
+
     public ProductDto convert(Product from){
         return new ProductDto(
                 from.getProductName(),
@@ -18,7 +23,7 @@ public class ProductConverter {
                 from.getStock(),
                 from.getProductImageUrl(),
                 from.getProductId(),
-                new BrandDto(from.getBrand().getBrand())
+                brandConverter.convert(from.getBrand())
         );
     }
 
