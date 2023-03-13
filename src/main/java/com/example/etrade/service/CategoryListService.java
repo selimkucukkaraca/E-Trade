@@ -1,7 +1,7 @@
 package com.example.etrade.service;
 
+import com.example.etrade.dto.CategoryDto;
 import com.example.etrade.dto.converter.CategoryConverter;
-import com.example.etrade.model.Category;
 import com.example.etrade.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class CategoryListService {
         this.categoryConverter = categoryConverter;
     }
 
-    public Category getCategoryByCategoryName(String categoryName){
-        return categoryRepository.getCategoryByCategoryName(categoryName);
+    public CategoryDto getCategoryByCategoryName(String categoryName){
+        return categoryConverter.convert(categoryRepository.getCategoryByCategoryName(categoryName));
     }
 }
