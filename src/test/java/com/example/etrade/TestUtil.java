@@ -1,9 +1,12 @@
 package com.example.etrade;
 
+import com.example.etrade.dto.CategoryDto;
 import com.example.etrade.dto.SellerDto;
 import com.example.etrade.dto.UserDto;
+import com.example.etrade.dto.request.CreateCategoryRequest;
 import com.example.etrade.dto.request.CreateSellerRequest;
 import com.example.etrade.dto.request.CreateUserRequest;
+import com.example.etrade.model.Category;
 import com.example.etrade.model.Seller;
 import com.example.etrade.model.User;
 
@@ -24,6 +27,7 @@ public class TestUtil {
     }
 
 
+
     public CreateSellerRequest getCreateSellerRequest(){
         return new CreateSellerRequest("test","test","test","test");
     }
@@ -35,6 +39,22 @@ public class TestUtil {
     public List<Seller> getSellerList(){
         return List.of(new Seller(1L,"test","test","test","test",true,null));
     }
+
+
+
+    public CreateCategoryRequest getCreateCategoryRequest(){
+        return new CreateCategoryRequest("test");
+    }
+
+    public List<CategoryDto> getCategoryDtoList(){
+        return List.of(new CategoryDto("test",null));
+    }
+
+    public List<Category> getCategoryList(){
+        return List.of(new Category(1L,"test",null));
+    }
+
+
 
 
 
