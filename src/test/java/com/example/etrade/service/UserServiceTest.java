@@ -100,6 +100,7 @@ class UserServiceTest extends TestUtil {
         verify(userRepository).findUserByMail(mail);
     }
 
+    //TODO  sendConfirmCode,active,deActive
 
 
 
