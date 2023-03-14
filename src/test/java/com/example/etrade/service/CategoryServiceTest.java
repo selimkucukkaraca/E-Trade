@@ -43,14 +43,24 @@ class CategoryServiceTest extends TestUtil {
         verify(categoryRepository).save(category);
         verify(categoryConverter).convertToDto(category);
     }
-    /*
+
     @Test
-    public void getByCategoryName_itShouldReturnCategory(){}
+    public void getByCategoryName_itShouldReturnCategory(){
+        Category category = getCategoryList().get(0);
+        String categoryName = "test";
+
+        when(categoryRepository.getCategoryByCategoryName(categoryName)).thenReturn(category);
+
+        Category response = categoryService.getByCategoryName(categoryName);
+
+        assertEquals(response,category);
+        verify(categoryRepository).getCategoryByCategoryName(categoryName);
+    }
 
     @Test
     public void delete(){}
 
     @Test
     public void updateCategory(){}
-    */
+
 }

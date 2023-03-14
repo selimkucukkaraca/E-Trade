@@ -1,14 +1,8 @@
 package com.example.etrade;
 
-import com.example.etrade.dto.CategoryDto;
-import com.example.etrade.dto.SellerDto;
-import com.example.etrade.dto.UserDto;
-import com.example.etrade.dto.request.CreateCategoryRequest;
-import com.example.etrade.dto.request.CreateSellerRequest;
-import com.example.etrade.dto.request.CreateUserRequest;
-import com.example.etrade.model.Category;
-import com.example.etrade.model.Seller;
-import com.example.etrade.model.User;
+import com.example.etrade.dto.*;
+import com.example.etrade.dto.request.*;
+import com.example.etrade.model.*;
 
 import java.util.List;
 
@@ -56,6 +50,31 @@ public class TestUtil {
 
 
 
+    public CreateAddressRequest getCreateAddressRequest(){
+        return new CreateAddressRequest("test","test","test","test","test");
+    }
+
+    public List<AddressDto> getAddressDtoList(){
+        return List.of(new AddressDto("test","test","test","test","test"));
+    }
+
+    public List<Address> getAddressList(){
+        return List.of(new Address("test","test","test","test","test"));
+    }
+
+
+
+    public CreateBrandRequest getCreateBrandRequest(){
+        return new CreateBrandRequest("test");
+    }
+
+    public List<BrandDto> getBrandDtoList(){
+        return List.of(new BrandDto("test","test"));
+    }
+
+    public List<Brand> getBrandList(){
+        return List.of(new Brand(1L,"test","test"));
+    }
 
 
 }
