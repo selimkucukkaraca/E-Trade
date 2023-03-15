@@ -19,7 +19,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDto>save(CreateProductRequest request){
+    public ResponseEntity<ProductDto>save(@RequestBody CreateProductRequest request){
         return new ResponseEntity<>(productService.save(request),HttpStatus.CREATED);
     }
     @DeleteMapping

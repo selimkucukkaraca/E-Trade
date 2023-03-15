@@ -48,7 +48,7 @@ public class SellerService {
         sellerRepository.delete(fromSeller);
     }
 
-    protected Seller getSellerByMail(String mail){
+    public Seller getSellerByMail(String mail){
         return sellerRepository.findSellerByMail(mail)
                 .orElseThrow(() -> new NotFoundException(""));
     }

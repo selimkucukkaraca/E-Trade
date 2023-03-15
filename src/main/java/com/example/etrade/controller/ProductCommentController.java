@@ -19,7 +19,7 @@ public class ProductCommentController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductCommentDto> save(CreateProductCommentRequest request){
+    public ResponseEntity<ProductCommentDto> save(@RequestBody CreateProductCommentRequest request){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(productCommentService.save(request));

@@ -42,5 +42,4 @@ public class SellerCommentService {
                 .orElseThrow(() -> new NotFoundException(""));
         return sellerCommentConverter.convertToDto(sellerComment);
     }
-
 }

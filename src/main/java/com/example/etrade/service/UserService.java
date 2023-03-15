@@ -85,7 +85,7 @@ public class UserService {
         mailSendService.sendMail(user.getMail(),CONFIRM_CODE_TITLE,description);
     }
 
-    protected User getUserByMail(String mail){
+    public User getUserByMail(String mail){
         return userRepository.findUserByMail(mail)
                 .orElseThrow(() -> new NotFoundException(""));
     }

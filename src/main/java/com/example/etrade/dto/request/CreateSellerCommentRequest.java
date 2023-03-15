@@ -8,5 +8,7 @@ public class CreateSellerCommentRequest {
     private String title;
     private String body;
     private int star;
+    private String sellerMail;
+    private String userMail;
 
 }
