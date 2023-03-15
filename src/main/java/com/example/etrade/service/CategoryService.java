@@ -33,7 +33,7 @@ public class CategoryService {
         categoryRepository.deleteByCategoryName(categoryName);
     }
 
-    protected Category getByCategoryName(String categoryName){
+    public Category getByCategoryName(String categoryName){
         return categoryRepository.getCategoryByCategoryName(categoryName);
     }
 

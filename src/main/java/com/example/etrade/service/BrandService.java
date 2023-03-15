@@ -28,7 +28,7 @@ public class BrandService {
         brandRepository.deleteBrandByBrandId(brandId);
     }
 
-    protected Brand getBrandByBrand(String brand){
+    public Brand getBrandByBrand(String brand){
         return brandRepository.findBrandByBrand(brand);
     }
 }

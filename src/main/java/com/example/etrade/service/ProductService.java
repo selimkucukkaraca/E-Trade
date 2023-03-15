@@ -8,6 +8,7 @@ import com.example.etrade.exception.NotFoundException;
 import com.example.etrade.model.Product;
 import com.example.etrade.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
