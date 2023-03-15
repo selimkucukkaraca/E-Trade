@@ -34,6 +34,7 @@ class CategoryServiceTest extends TestUtil {
         when(categoryConverter.toEntity(request)).thenReturn(category);
         when(categoryRepository.save(category)).thenReturn(category);
         when(categoryConverter.convertToDto(category)).thenReturn(categoryDto);
+        when(categoryRepository.existsCategoryByCategoryName("test"));
 
         CategoryDto response = categoryService.save(request);
 
@@ -42,6 +43,7 @@ class CategoryServiceTest extends TestUtil {
         verify(categoryConverter).toEntity(request);
         verify(categoryRepository).save(category);
         verify(categoryConverter).convertToDto(category);
+        verify(categoryRepository).existsCategoryByCategoryName("test");
     }
 
     @Test

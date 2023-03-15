@@ -37,7 +37,9 @@ public class TestUtil {
 
 
     public CreateCategoryRequest getCreateCategoryRequest(){
-        return new CreateCategoryRequest("test");
+        CreateCategoryRequest request = new CreateCategoryRequest();
+        request.setCategoryName("test");
+        return request;
     }
 
     public List<CategoryDto> getCategoryDtoList(){

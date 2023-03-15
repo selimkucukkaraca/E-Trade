@@ -32,19 +32,15 @@ class AddressServiceTest extends TestUtil {
 
         CreateAddressRequest request = getCreateAddressRequest();
         Address address = getAddressList().get(0);
-        AddressDto addressDto = getAddressDtoList().get(0);
-
 
         when(addressConverter.toEntity(request)).thenReturn(address);
         when(addressRepository.save(address)).thenReturn(address);
-        when(addressConverter.convertToDto(address));
 
-        AddressDto response = addressService.save(request);
+        Address response = addressService.save(request);
 
-        assertEquals(response,addressDto);
+        assertEquals(response,address);
         verify(addressConverter).toEntity(request);
         verify(addressRepository).save(address);
-        verify(addressConverter).convertToDto(address);
 
     }
 

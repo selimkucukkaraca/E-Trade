@@ -18,10 +18,9 @@ public class AddressService {
         this.addressConverter = addressConverter;
     }
 
-    public AddressDto save(CreateAddressRequest request){
+    public Address save(CreateAddressRequest request){
         var saved = addressConverter.toEntity(request);
-        addressRepository.save(saved);
-        return addressConverter.convertToDto(saved);
+        return addressRepository.save(saved);
     }
 
     public void delete(String addressId){
