@@ -10,5 +10,7 @@ public class ProductCommentDto {
     private String title;
     private String body;
     private int star;
+    private UserDto userDto;
+    private ProductDto productDto;
 
 }

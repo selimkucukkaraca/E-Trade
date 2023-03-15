@@ -39,7 +39,7 @@ public class ProductService {
         return productConverter.convertToDto(fromDbProduct);
     }
 
-    protected Product getProductObjectByProductId(String productId){
+    public Product getProductObjectByProductId(String productId){
         return productRepository.findProductByProductId(productId)
                 .orElseThrow(() -> new NotFoundException(""));
     }

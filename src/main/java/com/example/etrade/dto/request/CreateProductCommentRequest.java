@@ -8,5 +8,7 @@ public class CreateProductCommentRequest {
     private String title;
     private String body;
     private int star;
+    private String userMail;
+    private String productId;
 
 }

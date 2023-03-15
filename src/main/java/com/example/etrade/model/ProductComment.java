@@ -22,10 +22,14 @@ public class ProductComment extends BaseEntity {
     @ManyToOne
     private Product product;
     private String productCommentId = UUID.randomUUID().toString();
+    @ManyToOne
+    private User user;
 
-    public ProductComment(String title, String body, int star) {
+    public ProductComment(String title, String body, int star,User user,Product product) {
         this.title = title;
         this.body = body;
         this.star = star;
+        this.user = user;
+        this.product = product;
     }
 }
