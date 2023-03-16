@@ -3,7 +3,9 @@ package com.example.etrade.service;
 import com.example.etrade.dto.request.ConfirmCartRequest;
 import com.example.etrade.model.BankAccount;
 import com.example.etrade.repository.BankAccountRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class BankAccountService {
@@ -25,8 +27,12 @@ public class BankAccountService {
     protected boolean validateCreditCard(ConfirmCartRequest request) {
         BankAccount bankAccount = bankAccountRepository.findBankAccountByCardNumber(request.getCardNumber());
 
-        return request.getExpirationDate().equals(bankAccount.getExpirationDate())
-                && request.getCvv() == bankAccount.getCvv()
-                && request.getNameAndSurname().equals(bankAccount.getNameAndLastname());
+      if (bankAccount.getCardNumber().equals(request.getCardNumber())
+              && bankAccount.getExpirationDate().equals(request.getExpirationDate())
+              && bankAccount.getCvv() == request.getCvv() && bankAccount.getNameAndLastname().equals(request.getNameAndSurname())) {
+          return true;
+      } else {
+          throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "card not valid");
+      }
     }
 }

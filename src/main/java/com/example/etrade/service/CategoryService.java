@@ -8,7 +8,6 @@ import com.example.etrade.model.Category;
 import com.example.etrade.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class CategoryService {
 
