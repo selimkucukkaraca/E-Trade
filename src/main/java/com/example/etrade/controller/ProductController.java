@@ -24,6 +24,7 @@ public class ProductController {
                 .status(HttpStatus.CREATED)
                 .body(productService.save(request));
     }
+
     @DeleteMapping
     public ResponseEntity<?> delete(@RequestParam String productId){
         productService.deleteByProductId(productId);
@@ -37,6 +38,4 @@ public class ProductController {
         return ResponseEntity
                 .ok(productService.getByProductId(productId));
     }
-
-
 }
