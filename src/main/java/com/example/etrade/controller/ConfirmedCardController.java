@@ -18,7 +18,7 @@ public class ConfirmedCardController {
         this.confirmedCardService = confirmedCardService;
     }
 
-    @GetMapping
+    @GetMapping("/get-all")
     public ResponseEntity<List<ConfirmedCartDto>> getAll(@RequestParam int page, @RequestParam int size){
         return ResponseEntity
                 .ok(confirmedCardService.getAll(page,size));

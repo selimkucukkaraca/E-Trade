@@ -32,6 +32,7 @@ public class ConfirmedCardService {
     public List<ConfirmedCartDto> getAll(int page, int size) {
         Pageable pageable = PageRequest.of(page,size);
 
+        System.out.println("custom log : " + confirmedCartRepository.findAll());
         return confirmedCartRepository.findAll(pageable)
                 .stream()
                 .map(this::toDto)

@@ -35,7 +35,9 @@ public class ProductListService {
     public List<ProductDto> getProductByProductPrice(double min, double max) {
         return productRepository.findAll()
                 .stream()
-                .filter(product -> product.getProductPrice() <= min && product.getProductPrice() >= max)
+                .filter((product) ->
+                            product.getProductPrice() >= min && product.getProductPrice() <= max
+                )
                 .map(productConverter::convertToDto)
                 .collect(Collectors.toList());
     }
@@ -48,10 +50,4 @@ public class ProductListService {
                 .collect(Collectors.toList());
     }
 
-    public List<ProductDto> getProductByProductStock(int stock){
-        return productRepository.findProductByStock(stock)
-                .stream()
-                .map(productConverter::convertToDto)
-                .collect(Collectors.toList());
-    }
 }
