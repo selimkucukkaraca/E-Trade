@@ -67,7 +67,9 @@ public class TestUtil {
 
 
     public CreateBrandRequest getCreateBrandRequest(){
-        return new CreateBrandRequest("test");
+        CreateBrandRequest request = new CreateBrandRequest();
+        request.setBrand("test");
+        return request;
     }
 
     public List<BrandDto> getBrandDtoList(){

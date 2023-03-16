@@ -26,8 +26,8 @@ public class BrandController {
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(@RequestParam String productId){
-        brandService.deleteBrandByBrandId(productId);
+    public ResponseEntity<?> delete(@RequestParam String brandId){
+        brandService.deleteBrandByBrandId(brandId);
         return ResponseEntity
                 .noContent()
                 .build();

@@ -18,25 +18,25 @@ public class ProductListController {
         this.productListService = productListService;
     }
 
-    @GetMapping("/{productName}")
+    @GetMapping("/get-by-name/{productName}")
     public ResponseEntity<List<ProductDto>> getProductByProductName(@PathVariable String productName){
         return ResponseEntity
                 .ok(productListService.getProductByProductName(productName));
     }
 
-    @GetMapping("/{brand}")
+    @GetMapping("/get-by-brand/{brand}")
     public ResponseEntity<List<ProductDto>> getProductByProductBrand(@PathVariable String brand){
         return ResponseEntity
                 .ok(productListService.getProductByProductBrand(brand));
     }
 
-    @GetMapping
+    @GetMapping("/get-by-price")
     public ResponseEntity<List<ProductDto>> getProductByProductPrice(@RequestParam double min,@RequestParam double max){
         return ResponseEntity
                 .ok(productListService.getProductByProductPrice(min,max));
     }
 
-    @GetMapping("/{stock}")
+    @GetMapping("/get-by-stock/{stock}")
     public ResponseEntity<List<ProductDto>> getProductByProductStock(@PathVariable int stock){
         return ResponseEntity
                 .ok(productListService.getProductByProductStock(stock));

@@ -27,7 +27,7 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-       try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(FILE_NAME)))) {
+       /*try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(FILE_NAME)))) {
 
            while (scanner.hasNextLine()) {
                String[] line = scanner.nextLine().split(",");
@@ -51,6 +51,6 @@ public class DataLoader implements CommandLineRunner {
                    }
                }
            }
-       }
+       }*/
     }
 }

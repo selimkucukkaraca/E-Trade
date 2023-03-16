@@ -3,6 +3,7 @@ package com.example.etrade.service;
 import com.example.etrade.dto.SubCategoryDto;
 import com.example.etrade.dto.converter.SubCategoryConverter;
 import com.example.etrade.dto.request.CreateSubCategoryRequest;
+import com.example.etrade.model.SubCategory;
 import com.example.etrade.repository.SubCategoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,7 @@ public class SubCategoryService {
     }
 
     public void delete(String subCategoryName){
-        subCategoryRepository.deleteBySubCategoryName(subCategoryName);
+        SubCategory subCategory = subCategoryRepository.findSubCategoryBySubCategoryName(subCategoryName);
+        subCategoryRepository.delete(subCategory);
     }
 }
