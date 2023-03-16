@@ -5,6 +5,8 @@ import com.example.etrade.dto.converter.CartConverter;
 import com.example.etrade.model.ConfirmedCart;
 import com.example.etrade.repository.ConfirmedCartRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,8 +29,10 @@ public class ConfirmedCardService {
         return confirmedCartRepository.save(confirmedCart);
     }
 
-    public List<ConfirmedCartDto> getAll() {
-        return confirmedCartRepository.findAll()
+    public List<ConfirmedCartDto> getAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page,size);
+
+        return confirmedCartRepository.findAll(pageable)
                 .stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());

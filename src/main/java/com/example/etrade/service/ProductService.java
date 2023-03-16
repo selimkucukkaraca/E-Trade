@@ -3,14 +3,10 @@ package com.example.etrade.service;
 import com.example.etrade.dto.ProductDto;
 import com.example.etrade.dto.converter.ProductConverter;
 import com.example.etrade.dto.request.CreateProductRequest;
-import com.example.etrade.dto.request.ProductPriceRequest;
 import com.example.etrade.exception.NotFoundException;
 import com.example.etrade.model.Product;
 import com.example.etrade.repository.ProductRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -48,12 +44,4 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public void updateProductPrice(ProductPriceRequest request){
-        Optional<Product> product = productRepository.findProductByProductId(request.getProductId());
-
-        if (product.isPresent()){
-            product.get().setProductPrice(request.getNewPrice());
-            productRepository.save(product.get());
-        }
-    }
 }

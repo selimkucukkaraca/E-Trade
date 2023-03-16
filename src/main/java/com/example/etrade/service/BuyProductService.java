@@ -3,7 +3,6 @@ package com.example.etrade.service;
 import com.example.etrade.dto.request.ConfirmCartRequest;
 import com.example.etrade.model.Address;
 import com.example.etrade.model.ConfirmedCart;
-import com.example.etrade.model.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

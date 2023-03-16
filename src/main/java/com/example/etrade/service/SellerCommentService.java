@@ -12,13 +12,11 @@ import org.springframework.stereotype.Service;
 public class SellerCommentService {
 
     private final SellerCommentRepository sellerCommentRepository;
-    private final SellerService sellerService;
     private final SellerCommentConverter sellerCommentConverter;
 
     public SellerCommentService(SellerCommentRepository sellerCommentRepository,
-                                SellerService sellerService, SellerCommentConverter sellerCommentConverter) {
+                                SellerCommentConverter sellerCommentConverter) {
         this.sellerCommentRepository = sellerCommentRepository;
-        this.sellerService = sellerService;
         this.sellerCommentConverter = sellerCommentConverter;
     }
 
