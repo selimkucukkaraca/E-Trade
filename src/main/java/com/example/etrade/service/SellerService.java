@@ -71,7 +71,7 @@ public class SellerService {
         return sellerConverter.convertToDto(seller);
     }
 
-    public SellerDto deactivateSeller(String mail) {
+    public SellerDto deActivateSeller(String mail) {
         var fromDbSeller = getSellerByMail(mail);
         fromDbSeller.setActive(false);
         sellerRepository.save(fromDbSeller);

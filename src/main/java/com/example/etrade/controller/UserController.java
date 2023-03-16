@@ -54,9 +54,9 @@ public class UserController {
                 .ok(userService.activeUser(mail, code));
     }
 
-    @PatchMapping("/deactive-user")
-    public ResponseEntity<UserDto> deactiveUser(@RequestParam String mail){
+    @PatchMapping("/deActive-user")
+    public ResponseEntity<UserDto> deActiveUser(@RequestParam String mail){
         return ResponseEntity
-                .ok(userService.deactivateUser(mail));
+                .ok(userService.deActivateUser(mail));
     }
 }

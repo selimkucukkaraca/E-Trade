@@ -65,7 +65,7 @@ public class UserService {
         return userConverter.convertToDto(user);
     }
 
-    public UserDto deactivateUser(String mail) {
+    public UserDto deActivateUser(String mail) {
         var fromDbUser = getUserByMail(mail);
         fromDbUser.setActive(false);
         userRepository.save(fromDbUser);

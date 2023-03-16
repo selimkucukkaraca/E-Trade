@@ -36,4 +36,10 @@ public class ProductListController {
                 .ok(productListService.getProductByProductPrice(min,max));
     }
 
+    @GetMapping("/{stock}")
+    public ResponseEntity<List<ProductDto>> getProductByProductStock(@PathVariable int stock){
+        return ResponseEntity
+                .ok(productListService.getProductByProductStock(stock));
+    }
+
 }

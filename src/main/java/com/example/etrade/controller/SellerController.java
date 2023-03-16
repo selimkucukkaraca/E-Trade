@@ -42,15 +42,15 @@ public class SellerController {
     }
 
     @PatchMapping("/active-seller")
-    public ResponseEntity<SellerDto> activateUser(@RequestParam String mail, @RequestParam int code){
+    public ResponseEntity<SellerDto> activateSeller(@RequestParam String mail, @RequestParam int code){
         return ResponseEntity
                 .ok(sellerService.activeSeller(mail, code));
     }
 
-    @PatchMapping("/deactive-seller")
-    public ResponseEntity<SellerDto> deactiveUser(@RequestParam String mail){
+    @PatchMapping("/deActive-seller")
+    public ResponseEntity<SellerDto> deActiveSeller(@RequestParam String mail){
         return ResponseEntity
-                .ok(sellerService.deactivateSeller(mail));
+                .ok(sellerService.deActivateSeller(mail));
     }
 
     @GetMapping("/{mail}")

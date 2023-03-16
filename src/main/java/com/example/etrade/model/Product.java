@@ -40,7 +40,7 @@ public class Product extends BaseEntity{
         this.brand = brand;
     }
 
-    public Product(String productId) {
-        this.productId = productId;
+    public Product(String productName) {
+        this.productName = productName;
     }
 }

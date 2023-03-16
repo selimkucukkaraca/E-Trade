@@ -19,7 +19,7 @@ public class CartController {
     }
 
     @PostMapping
-    public ResponseEntity<CartDto> save(@RequestBody String mail, @RequestBody String productId){
+    public ResponseEntity<CartDto> save(@RequestParam String mail, @RequestParam String productId){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(cartService.save(mail,productId));

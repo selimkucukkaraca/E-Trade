@@ -9,9 +9,10 @@ import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product,Long> {
 
-    List<Product> getProductByProductName(String productName);
     void deleteProductByProductId(String productId);
     Optional<Product> findProductByProductId(String productId);
     Optional<Product> getProductByBrand(Brand brand);
+    List<Product> findProductByProductName(String productName);
+    List<Product> findProductByStock(int stock);
 
 }

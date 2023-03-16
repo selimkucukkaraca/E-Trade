@@ -25,7 +25,7 @@ public class ProductListService {
     }
 
     public List<ProductDto> getProductByProductName(String productName){
-        return productRepository.getProductByProductName(productName)
+        return productRepository.findProductByProductName(productName)
                 .stream()
                 .map(productConverter::convertToDto)
                 .collect(Collectors.toList());
@@ -43,6 +43,13 @@ public class ProductListService {
     public List<ProductDto> getProductByProductBrand(String brand){
         Brand fromDbBrand = brandService.getBrandByBrand(brand);
         return productRepository.getProductByBrand(fromDbBrand)
+                .stream()
+                .map(productConverter::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<ProductDto> getProductByProductStock(int stock){
+        return productRepository.findProductByStock(stock)
                 .stream()
                 .map(productConverter::convertToDto)
                 .collect(Collectors.toList());
