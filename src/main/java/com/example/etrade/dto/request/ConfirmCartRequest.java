@@ -2,6 +2,8 @@ package com.example.etrade.dto.request;
 
 import lombok.Data;
 
+import java.util.Optional;
+
 @Data
 public class ConfirmCartRequest {
 
@@ -11,5 +13,6 @@ public class ConfirmCartRequest {
     private String nameAndSurname;
     private String cartId;
     private String userMail;
+    private Optional<String> codeText;
     private CreateAddressRequest address;
 }

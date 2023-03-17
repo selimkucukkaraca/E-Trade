@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +27,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        System.out.println(LocalDate.now());
        /*try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(FILE_NAME)))) {
 
            while (scanner.hasNextLine()) {
