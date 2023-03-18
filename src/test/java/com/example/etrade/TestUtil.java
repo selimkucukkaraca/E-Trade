@@ -5,6 +5,7 @@ import com.example.etrade.dto.request.*;
 import com.example.etrade.model.*;
 import com.example.etrade.service.SubCategoryService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class TestUtil {
@@ -110,4 +111,31 @@ public class TestUtil {
     }
 
 
+
+    public CreatePromoCodeRequest getCreatePromoCodeRequest(){
+        return new CreatePromoCodeRequest("test","test",1L, LocalDate.now());
+    }
+
+    public List<PromoCodeDto> getPromoCodeDtoList(){
+        return List.of(new PromoCodeDto("test","test",1L,"test1.0",null,null));
+    }
+
+    public List<PromoCode> getPromoCodeList(){
+        return List.of(new PromoCode("test","test",1L,null,null));
+    }
+
+
+
+    public CreateProductRequest getCreateProductRequest(){
+        return new CreateProductRequest("test","test",1L,0,"test","test","test");
+    }
+
+    public List<ProductDto> getProductDtoList(){
+        return List.of(new ProductDto("test","test",1L,0,"test","test",null));
+    }
+
+    public List<Product> getProductList(){
+        return List.of(new Product(1L,"test","test",1L,0,"test",null,null,"test",null));
+    }
 }
+

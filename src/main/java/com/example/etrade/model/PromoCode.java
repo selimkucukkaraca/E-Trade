@@ -33,4 +33,12 @@ public class PromoCode extends BaseEntity{
         this.endDate = endDate;
         this.user = user;
     }
+
+    public PromoCode(String publicId, String code, double amount, LocalDate endDate, User user) {
+        this.publicId = publicId;
+        this.code = code;
+        this.amount = amount;
+        this.endDate = endDate;
+        this.user = user;
+    }
 }
