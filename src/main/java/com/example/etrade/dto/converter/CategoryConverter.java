@@ -24,7 +24,7 @@ public class CategoryConverter {
 
         return new CategoryDto(
                 from.getCategoryName(),
-                subCategoryDtoList
+                subCategoryDtoList //TODO fix null pointer exception
         );
     }
 

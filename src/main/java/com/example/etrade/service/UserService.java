@@ -45,6 +45,11 @@ public class UserService {
         userRepository.delete(fromUser);
     }
 
+    public User getUserByMail(String mail){
+        return userRepository.findUserByMail(mail)
+                .orElseThrow(() -> new NotFoundException(""));
+    }
+
     public UserDto getByMail(String mail){
         var fromDbUser = userRepository.findUserByMail(mail)
                 .orElseThrow(() -> new NotFoundException("Mail not found: " + mail));
@@ -84,10 +89,4 @@ public class UserService {
         String description = String.format(CONFIRM_CODE_DESCRIPTION, confirmCode.getCode());
         mailSendService.sendMail(user.getMail(),CONFIRM_CODE_TITLE,description);
     }
-
-    public User getUserByMail(String mail){
-        return userRepository.findUserByMail(mail)
-                .orElseThrow(() -> new NotFoundException(""));
-    }
-
 }

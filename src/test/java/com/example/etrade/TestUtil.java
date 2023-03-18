@@ -3,6 +3,7 @@ package com.example.etrade;
 import com.example.etrade.dto.*;
 import com.example.etrade.dto.request.*;
 import com.example.etrade.model.*;
+import com.example.etrade.service.SubCategoryService;
 
 import java.util.List;
 
@@ -78,6 +79,34 @@ public class TestUtil {
 
     public List<Brand> getBrandList(){
         return List.of(new Brand(1L,"test","test"));
+    }
+
+
+
+    public CreateSubCategoryRequest getCreateSubCategoryRequest(){
+        return new CreateSubCategoryRequest("test","test");
+    }
+
+    public List<SubCategoryDto> getSubCategoryDtoList(){
+        return List.of(new SubCategoryDto("test"));
+    }
+
+    public List<SubCategory> getSubCategoryList(){
+        return List.of(new SubCategory(1L,"test"));
+    }
+
+
+
+    public CreateSellerCommentRequest getCreateSellerCommentRequest(){
+        return new CreateSellerCommentRequest("test","test",1,"test","test");
+    }
+
+    public List<SellerCommentDto> getSellerCommentDtoList(){
+        return List.of(new SellerCommentDto("test","test",1,null,null));
+    }
+
+    public List<SellerComment> getSellerCommentList(){
+        return List.of(new SellerComment(1L,"test","test",1,null,null,"test"));
     }
 
 

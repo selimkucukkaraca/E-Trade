@@ -37,7 +37,7 @@ public class SubCategoryService {
     }
 
     public void delete(String subCategoryName){
-        SubCategory subCategory = subCategoryRepository.findSubCategoryBySubCategoryName(subCategoryName);
+        var subCategory = subCategoryRepository.findSubCategoryBySubCategoryName(subCategoryName);
         subCategoryRepository.delete(subCategory);
     }
 }

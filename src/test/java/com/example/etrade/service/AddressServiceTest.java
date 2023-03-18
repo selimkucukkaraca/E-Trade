@@ -9,6 +9,7 @@ import com.example.etrade.repository.AddressRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,13 +19,15 @@ class AddressServiceTest extends TestUtil {
 
     private AddressRepository addressRepository;
     private AddressConverter addressConverter;
+    private UserService userService;
     private AddressService addressService;
 
     @BeforeEach
     public void setUp(){
         addressRepository = mock(AddressRepository.class);
         addressConverter = mock(AddressConverter.class);
-        addressService = new AddressService(addressRepository,addressConverter);
+        userService = mock(UserService.class);
+        addressService = new AddressService(addressRepository,addressConverter,userService);
     }
 
     @Test
@@ -57,6 +60,15 @@ class AddressServiceTest extends TestUtil {
         assertEquals(response,addressDto);
         verify(addressRepository).findAddressByAddressId(addressId);
     }
+
+    /*
+    @Test
+    public void getAddressListByUserMail_itShouldReturnAddressDtoList(){
+        List<AddressDto> addressDtoList = getAddressDtoList();
+        List<Address> addressList = getAddressList();
+
+    }
+    */
 
     //TODO delete
 

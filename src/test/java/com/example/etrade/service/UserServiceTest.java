@@ -54,19 +54,22 @@ class UserServiceTest extends TestUtil {
         verify(userConverter).convertToDto(user);
 
     }
-/*
+
+    /*
     @Test
     public void delete(){
         User user = getUserList().get(0);
+        String mail = "test";
 
         userRepository.delete(user);
 
-        userService.delete(user.getMail());
+        userService.delete(mail);
 
         verify(userRepository).delete(user);
     }
+    */
 
- */
+
 
     @Test
     public void getByMail_itShouldReturnUserDto(){
@@ -101,7 +104,4 @@ class UserServiceTest extends TestUtil {
     }
 
     //TODO  sendConfirmCode,active,deActive
-
-
-
 }
