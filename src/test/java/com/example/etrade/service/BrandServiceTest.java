@@ -9,6 +9,8 @@ import com.example.etrade.repository.BrandRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -46,6 +48,33 @@ class BrandServiceTest extends TestUtil {
     }
 
     @Test
+    public void delete(){
+        Brand brand = getBrandList().get(0);
+        String brandId = "test";
+
+        when(brandRepository.findBrandByBrandId(brandId)).thenReturn(Optional.ofNullable(brand));
+
+        brandService.deleteBrandByBrandId(brandId);
+
+        assert brand != null;
+        verify(brandRepository).delete(brand);
+    }
+
+    @Test
+    public void getBrandByBrandId_itShouldReturnBrand(){
+        Brand brand = getBrandList().get(0);
+        String brandId = "test";
+
+        when(brandRepository.findBrandByBrandId(brandId)).thenReturn(Optional.ofNullable(brand));
+
+        Brand response = brandService.getBrandByBrandId(brandId);
+
+        assertEquals(response,brand);
+        verify(brandRepository).findBrandByBrandId(brandId);
+
+    }
+
+    @Test
     public void getBrandByBrand_itShouldReturnBrand(){
         Brand brand = getBrandList().get(0);
 
@@ -57,7 +86,7 @@ class BrandServiceTest extends TestUtil {
         verify(brandRepository).findBrandByBrand("test");
     }
 
-    //TODO delete , updateCategory
+
 
 
 }

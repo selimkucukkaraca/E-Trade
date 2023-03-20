@@ -26,7 +26,8 @@ public class ProductService {
     }
 
     public void deleteByProductId(String productId){
-        productRepository.deleteProductByProductId(productId);
+        var product = getProductObjectByProductId(productId);
+        productRepository.delete(product);
     }
 
     public ProductDto getByProductId(String productId){

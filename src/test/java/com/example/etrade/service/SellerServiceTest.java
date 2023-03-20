@@ -88,5 +88,18 @@ class SellerServiceTest extends TestUtil {
         verify(sellerRepository).findSellerByMail(mail);
     }
 
-    //TODO  delete,sendConfirmCode,active,deActive
+    @Test
+    public void delete(){
+        Seller seller = getSellerList().get(0);
+        String mail = "test";
+
+        when(sellerRepository.findSellerByMail(mail)).thenReturn(Optional.ofNullable(seller));
+
+        sellerService.delete(mail);
+
+        assert seller != null;
+        verify(sellerRepository).delete(seller);
+    }
+
+    //TODO sendConfirmCode,active,deActive
 }

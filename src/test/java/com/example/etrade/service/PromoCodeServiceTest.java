@@ -27,24 +27,10 @@ class PromoCodeServiceTest extends TestUtil {
         promoCodeService = new PromoCodeService(promoCodeRepository,userService);
     }
 
-   /* @Test
+    @Test
     public void savePromoCode_itShouldReturnPromoCodeDto(){
-        CreatePromoCodeRequest request = getCreatePromoCodeRequest();
-        PromoCodeDto promoCodeDto = getPromoCodeDtoList().get(0);
-        PromoCode promoCode = getPromoCodeList().get(0);
-        User user = getUserList().get(0);
-
-        when(userService.getUserByMail("test")).thenReturn(user);
-        when(promoCodeRepository.save(promoCode)).thenReturn(promoCode);
-        promoCode.setPublicId("test");
-
-        PromoCodeDto response = promoCodeService.save(request);
-        response.setPublicId("test");
-
-        assertEquals(response,promoCodeDto);
-        verify(userService).getUserByMail("test");
-        verify(promoCodeRepository).save(promoCode);
-    }*/
+        //TODO
+    }
 
     @Test
     public void getByCodeText_itShouldReturnPromoCode(){
@@ -70,6 +56,21 @@ class PromoCodeServiceTest extends TestUtil {
         verify(promoCodeRepository).findPromoCodeByPublicId("test");
     }
 
+    @Test
+    public void delete(){
+        PromoCode promoCode = getPromoCodeList().get(0);
+        String publicId = "test";
 
-    //TODO toDto yu yaz
+        when(promoCodeRepository.findPromoCodeByPublicId(publicId)).thenReturn(Optional.ofNullable(promoCode));
+
+        promoCodeService.delete(publicId);
+
+        assert promoCode != null;
+        verify(promoCodeRepository).delete(promoCode);
+    }
+
+    @Test
+    public void toDto_itShouldReturnPromoCodeDto(){
+        //TODO
+    }
 }

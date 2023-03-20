@@ -30,8 +30,8 @@ public class AddressService {
     }
 
     public void delete(String addressId){
-        var fromAddress = getAddressByAddressId(addressId);
-        addressRepository.deleteAddressByAddressId(String.valueOf(fromAddress));
+        var fromAddress = getAddress(addressId);
+        addressRepository.delete(fromAddress);
     }
 
     public AddressDto getAddressByAddressId(String addressId){
@@ -45,5 +45,10 @@ public class AddressService {
                .stream()
                .map(addressConverter::convertToDto)
                .collect(Collectors.toList());
+    }
+
+    public Address getAddress(String addressId){
+        return addressRepository.getAddressByAddressId(addressId)
+                .orElseThrow(()-> new RuntimeException(""));
     }
 }

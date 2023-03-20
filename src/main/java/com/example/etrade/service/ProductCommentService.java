@@ -5,6 +5,7 @@ import com.example.etrade.dto.converter.ProductCommentConverter;
 import com.example.etrade.dto.request.CreateProductCommentRequest;
 import com.example.etrade.exception.NotFoundException;
 import com.example.etrade.exception.generic.GenericExistException;
+import com.example.etrade.model.ProductComment;
 import com.example.etrade.repository.ProductCommentRepository;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,13 @@ public class ProductCommentService {
     }
 
     public void delete(String productCommentId){
-        productCommentRepository.deleteByProductCommentId(productCommentId);
+        var productComment = getProductCommentByProductCommentId(productCommentId);
+        productCommentRepository.delete(productComment);
+    }
+
+    public ProductComment getProductCommentByProductCommentId(String productCommentId){
+        return productCommentRepository.findProductCommentByProductCommentId(productCommentId)
+                .orElseThrow(() -> new NotFoundException(""));
     }
 
     public ProductCommentDto getByProductCommentId(String productCommentId){

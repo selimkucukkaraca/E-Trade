@@ -49,6 +49,14 @@ class SellerCommentServiceTest extends TestUtil {
 
     @Test
     public void delete(){
+        SellerComment sellerComment = getSellerCommentList().get(0);
+        String sellerCommentId = "test";
+
+        when(sellerCommentRepository.findSellerCommentBySellerCommentId(sellerCommentId)).thenReturn(Optional.ofNullable(sellerComment));
+
+        sellerCommentService.delete(sellerCommentId);
+
+        verify(sellerCommentRepository).findSellerCommentBySellerCommentId(sellerCommentId);
     }
 
     @Test

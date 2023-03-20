@@ -12,3 +12,4 @@ public class ETradeApplication {
 
 	}
 }
+//TODO bir user bir yorum yapabilsin ayni kayda = sellercomment, productcomment

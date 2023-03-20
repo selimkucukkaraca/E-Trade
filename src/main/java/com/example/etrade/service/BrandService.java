@@ -3,6 +3,7 @@ package com.example.etrade.service;
 import com.example.etrade.dto.BrandDto;
 import com.example.etrade.dto.converter.BrandConverter;
 import com.example.etrade.dto.request.CreateBrandRequest;
+import com.example.etrade.exception.NotFoundException;
 import com.example.etrade.model.Brand;
 import com.example.etrade.repository.BrandRepository;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,13 @@ public class BrandService {
     }
 
     public void deleteBrandByBrandId(String brandId){
-        brandRepository.deleteBrandByBrandId(brandId);
+        var brand = getBrandByBrandId(brandId);
+        brandRepository.delete(brand);
+    }
+
+    public Brand getBrandByBrandId(String brandId){
+        return brandRepository.findBrandByBrandId(brandId)
+                .orElseThrow(() -> new NotFoundException(""));
     }
 
     public Brand getBrandByBrand(String brand){

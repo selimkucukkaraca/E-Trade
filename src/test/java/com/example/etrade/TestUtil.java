@@ -137,5 +137,19 @@ public class TestUtil {
     public List<Product> getProductList(){
         return List.of(new Product(1L,"test","test",1L,0,"test",null,null,"test",null));
     }
+
+
+
+    public CreateProductCommentRequest getCreateProductCommentRequest(){
+        return new CreateProductCommentRequest("test","test",0,"test","test");
+    }
+
+    public List<ProductCommentDto> getProductCommentDtoList(){
+        return List.of(new ProductCommentDto("test","test",0,null,null));
+    }
+
+    public List<ProductComment> getProductCommentList(){
+        return List.of(new ProductComment(1L,"test","test",0,null,"test",null));
+    }
 }
 

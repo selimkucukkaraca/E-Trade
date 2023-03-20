@@ -8,6 +8,7 @@ import com.example.etrade.model.Address;
 import com.example.etrade.repository.AddressRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.stubbing.OngoingStubbing;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,17 @@ class AddressServiceTest extends TestUtil {
     }
 
     @Test
+    public void delete() {
+        String addressId = "test";
+        Address address = getAddressList().get(0);
+
+        when(addressRepository.getAddressByAddressId(addressId)).thenReturn(Optional.ofNullable(address));
+
+        addressService.delete(addressId);
+
+    }
+
+    @Test
     public void getAddressByAddressId_itShouldReturnAddressDto(){
 
         AddressDto addressDto = getAddressDtoList().get(0);
@@ -61,15 +73,27 @@ class AddressServiceTest extends TestUtil {
         verify(addressRepository).findAddressByAddressId(addressId);
     }
 
-    /*
+
     @Test
     public void getAddressListByUserMail_itShouldReturnAddressDtoList(){
-        List<AddressDto> addressDtoList = getAddressDtoList();
-        List<Address> addressList = getAddressList();
-
+        //TODO
     }
-    */
 
-    //TODO delete
+    @Test
+    public void getAddress_itShouldReturnAddress(){
+        Address address = getAddressList().get(0);
+        String addressId = "test";
+
+        when(addressRepository.getAddressByAddressId(addressId)).thenReturn(Optional.ofNullable(address));
+
+        Address response = addressService.getAddress(addressId);
+
+        assertEquals(response,address);
+        verify(addressRepository).getAddressByAddressId(addressId);
+    }
+
+
+
+
 
 }

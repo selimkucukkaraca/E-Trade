@@ -7,6 +7,5 @@ import java.util.Optional;
 
 public interface ProductCommentRepository extends JpaRepository<ProductComment,Long> {
 
-    void deleteByProductCommentId(String productCommentId);
     Optional<ProductComment> findProductCommentByProductCommentId(String productCommentId);
 }

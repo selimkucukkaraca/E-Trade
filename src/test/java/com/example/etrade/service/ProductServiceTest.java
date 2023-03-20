@@ -88,6 +88,17 @@ class ProductServiceTest extends TestUtil {
 
     }
 
-    //TOOD delete
+    @Test
+    public void delete(){
+        Product product = getProductList().get(0);
+        String productId = "test";
+
+        when(productRepository.findProductByProductId(productId)).thenReturn(Optional.ofNullable(product));
+
+        productService.deleteByProductId(productId);
+
+        assert product != null;
+        verify(productRepository).delete(product);
+    }
 
 }

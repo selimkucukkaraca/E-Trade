@@ -51,18 +51,35 @@ class CategoryServiceTest extends TestUtil {
         Category category = getCategoryList().get(0);
         String categoryName = "test";
 
-        when(categoryRepository.getCategoryByCategoryName(categoryName)).thenReturn(category);
+        when(categoryRepository.findCategoryByCategoryName(categoryName)).thenReturn(category);
 
         Category response = categoryService.getByCategoryName(categoryName);
 
         assertEquals(response,category);
-        verify(categoryRepository).getCategoryByCategoryName(categoryName);
+        verify(categoryRepository).findCategoryByCategoryName(categoryName);
     }
 
     @Test
-    public void delete(){}
+    public void delete(){
+        Category category = getCategoryList().get(0);
+        String categoryName = "Test";
+
+        when(categoryRepository.findCategoryByCategoryName(categoryName)).thenReturn(category);
+
+        categoryService.deleteCategory(categoryName);
+
+        verify(categoryRepository).delete(category);
+    }
 
     @Test
-    public void updateCategory(){}
+    public void updateCategory(){
+        Category category = getCategoryList().get(0);
+
+        when(categoryRepository.save(category)).thenReturn(category);
+
+        categoryService.updateCategory(category);
+
+        verify(categoryRepository).save(category);
+    }
 
 }

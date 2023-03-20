@@ -27,7 +27,6 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(LocalDate.now());
        /*try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(FILE_NAME)))) {
 
            while (scanner.hasNextLine()) {

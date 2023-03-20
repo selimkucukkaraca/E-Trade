@@ -55,21 +55,18 @@ class UserServiceTest extends TestUtil {
 
     }
 
-    /*
     @Test
     public void delete(){
         User user = getUserList().get(0);
         String mail = "test";
 
-        userRepository.delete(user);
+        when(userRepository.findUserByMail(mail)).thenReturn(Optional.ofNullable(user));
 
         userService.delete(mail);
 
+        assert user != null;
         verify(userRepository).delete(user);
     }
-    */
-
-
 
     @Test
     public void getByMail_itShouldReturnUserDto(){

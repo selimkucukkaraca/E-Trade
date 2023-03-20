@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface AddressRepository extends JpaRepository<Address,Long> {
 
     Optional<AddressDto> findAddressByAddressId(String addressId);
-    void deleteAddressByAddressId(String addressId);
+    Optional<Address> getAddressByAddressId(String id);
 }

@@ -29,11 +29,12 @@ public class CategoryService {
     }
 
     public void deleteCategory(String categoryName){
-        categoryRepository.deleteByCategoryName(categoryName);
+        var category = getByCategoryName(categoryName);
+        categoryRepository.delete(category);
     }
 
     public Category getByCategoryName(String categoryName){
-        return categoryRepository.getCategoryByCategoryName(categoryName);
+        return categoryRepository.findCategoryByCategoryName(categoryName);
     }
 
     protected void updateCategory(Category category){

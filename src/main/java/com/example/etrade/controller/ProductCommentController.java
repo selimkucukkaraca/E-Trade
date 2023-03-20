@@ -3,6 +3,7 @@ package com.example.etrade.controller;
 import com.example.etrade.dto.ProductCommentDto;
 import com.example.etrade.dto.request.CreateProductCommentRequest;
 import com.example.etrade.service.ProductCommentService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class ProductCommentController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductCommentDto> save(@RequestBody CreateProductCommentRequest request){
+    public ResponseEntity<ProductCommentDto> save(@RequestBody @Valid CreateProductCommentRequest request){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(productCommentService.save(request));

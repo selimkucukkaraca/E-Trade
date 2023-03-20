@@ -34,40 +34,21 @@ class SubCategoryServiceTest extends TestUtil {
         categoryService = new CategoryService(categoryRepository, categoryConverter);
     }
 
-/*    @Test
+    @Test
     public void saveSubCategory_itShouldReturnSubCategoryDto(){
-        CreateSubCategoryRequest request = getCreateSubCategoryRequest();
-        SubCategory subCategory = getSubCategoryList().get(0);
-        SubCategoryDto subCategoryDto = getSubCategoryDtoList().get(0);
-        Category category = getCategoryList().get(0);
-
-        //getbycaTEgory name i yaz
-        when(categoryRepository.getCategoryByCategoryName("test")).thenReturn(category);
-        when(categoryService.getByCategoryName("test")).thenReturn(category);
-        when(subCategoryConverter.toEntity(request)).thenReturn(subCategory);
-        when(subCategoryRepository.existsSubCategoryBySubCategoryName("test")).thenReturn(false);
-        category.getSubCategories().add(subCategory);
-        when(subCategoryRepository.save(subCategory)).thenReturn(subCategory);
-        when(categoryRepository.save(category));
-
-        //
-        when(subCategoryConverter.convertToDto(subCategory)).thenReturn(subCategoryDto);
-
-        SubCategoryDto response = subCategoryService.save(request);
-
-        assertEquals(response,subCategoryDto);
-        //
-        verify(subCategoryConverter).toEntity(request);
-        verify(subCategoryRepository).existsSubCategoryBySubCategoryName("test");
-        //
-        verify(subCategoryRepository).save(subCategory);
-
-    }*/
+        //TODO
+    }
 
     @Test
     public void delete(){
+        SubCategory subCategory = getSubCategoryList().get(0);
+        String subCategoryName = "test";
 
+        when(subCategoryRepository.findSubCategoryBySubCategoryName(subCategoryName)).thenReturn(subCategory);
 
+        subCategoryService.delete(subCategoryName);
+
+        verify(subCategoryService).delete(subCategoryName);
 
     }
 }
