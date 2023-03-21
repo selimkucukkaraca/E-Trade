@@ -11,6 +11,4 @@ import java.util.List;
 public class CategoryDto extends BaseDto{
 
     private String categoryName;
-    private List<SubCategoryDto> subCategoryDtoList;
-
 }

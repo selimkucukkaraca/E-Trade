@@ -11,21 +11,9 @@ import java.util.List;
 @Component
 public class CategoryConverter {
 
-    private final SubCategoryConverter subCategoryConverter;
-
-    public CategoryConverter(SubCategoryConverter subCategoryConverter) {
-        this.subCategoryConverter = subCategoryConverter;
-    }
-
     public CategoryDto convertToDto(Category from){
-        List<SubCategoryDto> subCategoryDtoList = from.getSubCategories()
-                .stream()
-                .map(subCategoryConverter::convertToDto).toList();
-
-
         return new CategoryDto(
-                from.getCategoryName(),
-                subCategoryDtoList //TODO fix null pointer exception
+                from.getCategoryName()
         );
     }
 
