@@ -22,6 +22,7 @@ public class CategoryConverter {
                 .stream()
                 .map(subCategoryConverter::convertToDto).toList();
 
+
         return new CategoryDto(
                 from.getCategoryName(),
                 subCategoryDtoList //TODO fix null pointer exception

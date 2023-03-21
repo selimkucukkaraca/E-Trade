@@ -2,8 +2,6 @@ package com.example.etrade.dto.converter;
 
 import com.example.etrade.dto.ProductDto;
 import com.example.etrade.dto.request.CreateProductRequest;
-import com.example.etrade.model.Brand;
-import com.example.etrade.model.Category;
 import com.example.etrade.model.Product;
 import com.example.etrade.service.BrandService;
 import com.example.etrade.service.CategoryService;
