@@ -1,11 +1,12 @@
 package com.example.etrade.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 public class CartDto extends BaseDto {
 

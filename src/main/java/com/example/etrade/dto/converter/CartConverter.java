@@ -19,11 +19,11 @@ public class CartConverter {
     }
 
     public CartDto convertToDto(Cart from){
-        List<ProductDto> productDtos = from.getProduct()
+        List<ProductDto> productDto = from.getProduct()
                 .stream()
                 .map(productConverter::convertToDto).toList();
         return new CartDto(
-                productDtos,
+                productDto,
                 userConverter.convertToDto(from.getUser())
         );
     }

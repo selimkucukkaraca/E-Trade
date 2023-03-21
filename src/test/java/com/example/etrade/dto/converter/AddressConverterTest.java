@@ -21,7 +21,7 @@ public class AddressConverterTest extends TestUtil {
     }
 
     @Test
-    public void testConvertToDto_itShouldReturnAddressDto() {
+    public void convertToDto_itShouldReturnAddressDto() {
         Address address = getAddressList().get(0);
         AddressDto addressDto = getAddressDtoList().get(0);
 
@@ -33,7 +33,7 @@ public class AddressConverterTest extends TestUtil {
     }
 
     @Test
-    public void testToEntity_isShouldReturnAddress() {
+    public void toEntity_isShouldReturnAddress() {
         CreateAddressRequest request = getCreateAddressRequest();
         Address address = getAddressList().get(0);
 
