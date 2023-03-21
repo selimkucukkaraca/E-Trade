@@ -3,6 +3,8 @@ package com.example.etrade;
 import com.example.etrade.dto.*;
 import com.example.etrade.dto.request.*;
 import com.example.etrade.model.*;
+import com.example.etrade.service.CartService;
+import com.example.etrade.service.ConfirmedCardService;
 import com.example.etrade.service.SubCategoryService;
 
 import java.time.LocalDate;
@@ -151,5 +153,38 @@ public class TestUtil {
     public List<ProductComment> getProductCommentList(){
         return List.of(new ProductComment(1L,"test","test",0,null,"test",null));
     }
+
+
+
+    public List<ConfirmedCartDto> getConfirmedCartDtoList(){
+        return List.of(new ConfirmedCartDto(null,"test"));
+    }
+
+    public List<ConfirmedCart> getConfirmedCartList(){
+        return List.of(new ConfirmedCart(null,null));
+    }
+
+
+
+    public List<ConfirmCode> getConfirmCodeList(){
+        return List.of(new ConfirmCode(1L,0));
+    }
+
+
+
+    public List<BankAccount> getBankAccountList(){
+        return List.of(new BankAccount(1L,"test","test",0,"test",1L));
+    }
+
+
+
+    public List<CartDto> getCartDtoList(){
+        return List.of(new CartDto(null,null,"test"));
+    }
+
+    public List<Cart> getCartList(Product product, User user){
+        return List.of(new Cart(1L,null,null,"test"));
+    }
+
 }
 

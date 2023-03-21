@@ -42,8 +42,8 @@ public class CartService {
     }
 
     public void deleteByCartId(String cartId){
-        cartRepository.deleteByCartId(cartId);
+        var fromCart = getCart(cartId);
+        cartRepository.delete(fromCart);
     }
-
 
 }

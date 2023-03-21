@@ -16,12 +16,12 @@ public class BankAccountService {
         this.bankAccountRepository = bankAccountRepository;
     }
 
-    protected BankAccount getByCardNumber(String cardNumber){
-        return bankAccountRepository.findBankAccountByCardNumber(cardNumber);
-    }
-
     protected BankAccount save(BankAccount bankAccount){
         return bankAccountRepository.save(bankAccount);
+    }
+
+    protected BankAccount getByCardNumber(String cardNumber){
+        return bankAccountRepository.findBankAccountByCardNumber(cardNumber);
     }
 
     protected boolean validateCreditCard(ConfirmCartRequest request) {
