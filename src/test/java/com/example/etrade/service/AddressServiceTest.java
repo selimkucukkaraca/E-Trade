@@ -66,15 +66,19 @@ class AddressServiceTest extends TestUtil {
     @Test
     public void getAddressByAddressId_itShouldReturnAddressDto() {
 
+        Address address = getAddressList().get(0);
         AddressDto addressDto = getAddressDtoList().get(0);
         String addressId = "test";
 
-        when(addressRepository.findAddressByAddressId(addressId)).thenReturn(Optional.ofNullable(addressDto));
+        when(addressRepository.findAddressByAddressId(addressId)).thenReturn(Optional.ofNullable(address));
+        assert address != null;
+        when(addressConverter.convertToDto(address)).thenReturn(addressDto);
 
         AddressDto response = addressService.getAddressByAddressId(addressId);
 
         assertEquals(response, addressDto);
         verify(addressRepository).findAddressByAddressId(addressId);
+        verify(addressConverter).convertToDto(address);
 
     }
 

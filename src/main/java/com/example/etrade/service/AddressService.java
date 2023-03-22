@@ -3,6 +3,7 @@ package com.example.etrade.service;
 import com.example.etrade.dto.AddressDto;
 import com.example.etrade.dto.converter.AddressConverter;
 import com.example.etrade.dto.request.CreateAddressRequest;
+import com.example.etrade.exception.NotFoundException;
 import com.example.etrade.model.Address;
 import com.example.etrade.repository.AddressRepository;
 import org.springframework.stereotype.Service;
@@ -35,8 +36,9 @@ public class AddressService {
     }
 
     public AddressDto getAddressByAddressId(String addressId) {
-        return addressRepository.findAddressByAddressId(addressId)
-                .orElseThrow(() -> new RuntimeException(""));
+        var address = addressRepository.findAddressByAddressId(addressId)
+                .orElseThrow(() -> new NotFoundException(""));
+        return addressConverter.convertToDto(address);
     }
 
     public List<AddressDto> getAddressListByUserMail(String mail) {

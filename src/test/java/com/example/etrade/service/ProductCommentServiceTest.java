@@ -89,6 +89,7 @@ class ProductCommentServiceTest extends TestUtil {
         when(productCommentConverter.convertToDto(productComment)).thenReturn(productCommentDto);
 
         ProductCommentDto response = productCommentService.getByProductCommentId(productCommentId);
+
         assertEquals(productCommentDto, response);
         verify(productCommentRepository).findProductCommentByProductCommentId(productCommentId);
         verify(productCommentConverter).convertToDto(productComment);

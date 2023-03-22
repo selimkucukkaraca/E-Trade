@@ -107,5 +107,32 @@ class SellerServiceTest extends TestUtil {
 
     }
 
-    //TODO sendConfirmCode,active,deActive
+    @Test
+    public void deActivateSeller_itShouldReturnSellerDto(){
+
+        Seller seller = getSellerList().get(0);
+        SellerDto sellerDto = getSellerDtoList().get(0);
+
+        when(sellerRepository.save(seller)).thenReturn(seller);
+        when(sellerConverter.convertToDto(seller)).thenReturn(sellerDto);
+        when(sellerRepository.findSellerByMail("test")).thenReturn(Optional.of(seller));
+
+        SellerDto response = sellerService.deActivateSeller("test");
+
+        assertEquals(sellerDto,response);
+        verify(sellerRepository).save(seller);
+        verify(sellerConverter).convertToDto(seller);
+        verify(sellerRepository).findSellerByMail("test");
+
+    }
+
+    @Test
+    public void sendConfirmCode() {
+        //TODO
+    }
+
+    @Test
+    public void activeSeller_itShouldReturnSellerDto() {
+        //TODO
+    }
 }

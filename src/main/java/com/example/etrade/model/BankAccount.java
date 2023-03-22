@@ -9,13 +9,11 @@ import org.hibernate.Hibernate;
 
 import java.util.Objects;
 
-
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class BankAccount {
     @Id
