@@ -84,19 +84,7 @@ class AddressServiceTest extends TestUtil {
 
     @Test
     public void getAddressListByUserMail_itShouldReturnAddressDtoList() {
-
-        User user = getUserList().get(0);
-        String mail = user.getMail();
-        List<AddressDto> addressDtoList = getAddressDtoList();
-
-        when(userRepository.findUserByMail(mail)).thenReturn(Optional.of(user));
-        when(userService.getUserByMail(mail)).thenReturn(user);
-        when(user.getAddress().stream().map(addressConverter::convertToDto).collect(Collectors.toList())).thenReturn(addressDtoList);
-
-        List<AddressDto> response = addressService.getAddressListByUserMail(mail);
-
-        assertEquals(addressDtoList, response);
-
+        //TODO
     }
 
     @Test

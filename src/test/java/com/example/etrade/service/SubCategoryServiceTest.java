@@ -46,7 +46,7 @@ class SubCategoryServiceTest extends TestUtil {
 
         subCategoryService.delete(subCategoryName);
 
-        verify(subCategoryService).delete(subCategoryName);
+        verify(subCategoryRepository).delete(subCategory);
 
     }
 }

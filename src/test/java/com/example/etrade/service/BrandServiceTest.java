@@ -36,7 +36,7 @@ class BrandServiceTest extends TestUtil {
 
         when(brandConverter.toEntity(request)).thenReturn(brand);
         when(brandRepository.save(brand)).thenReturn(brand);
-        when(brandConverter.convertToDto(brand));
+        when(brandConverter.convertToDto(brand)).thenReturn(brandDto);
 
         BrandDto response = brandService.save(request);
 

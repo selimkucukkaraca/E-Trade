@@ -47,7 +47,6 @@ class UserServiceTest extends TestUtil {
         UserDto response = userService.save(request);
 
         assertEquals(response, userDto);
-
         verify(userConverter).toEntity(request);
         verify(userRepository).existsUserByMail("test");
         verify(userRepository).save(user);
