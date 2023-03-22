@@ -6,10 +6,9 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class ETradeApplication {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-			SpringApplication.run(ETradeApplication.class, args);
+        SpringApplication.run(ETradeApplication.class, args);
 
-	}
+    }
 }
-//TODO bir user bir yorum yapabilsin ayni kayda = sellercomment, productcomment

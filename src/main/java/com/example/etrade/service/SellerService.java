@@ -34,32 +34,32 @@ public class SellerService {
         this.sellerRepository = sellerRepository;
     }
 
-    public SellerDto save(CreateSellerRequest request){
+    public SellerDto save(CreateSellerRequest request) {
         var saved = sellerConverter.toEntity(request);
-        if (sellerRepository.existsSellerByMail(saved.getMail())){
+        if (sellerRepository.existsSellerByMail(saved.getMail())) {
             throw new GenericExistException("Seller already exist, mail: " + saved.getMail());
         }
         sellerRepository.save(saved);
         return sellerConverter.convertToDto(saved);
     }
 
-    public void delete(String mail){
+    public void delete(String mail) {
         var fromSeller = getSellerByMail(mail);
         sellerRepository.delete(fromSeller);
     }
 
-    public Seller getSellerByMail(String mail){
+    public Seller getSellerByMail(String mail) {
         return sellerRepository.findSellerByMail(mail)
                 .orElseThrow(() -> new NotFoundException(""));
     }
 
-    public SellerDto getByMail(String mail){
+    public SellerDto getByMail(String mail) {
         var fromDbSeller = sellerRepository.findSellerByMail(mail)
                 .orElseThrow(() -> new NotFoundException("Mail not found: " + mail));
         return sellerConverter.convertToDto(fromDbSeller);
     }
 
-    public SellerDto activeSeller(String mail,int code){
+    public SellerDto activeSeller(String mail, int code) {
         var seller = getSellerByMail(mail);
 
         if (seller.getConfirmCode().getCode() == code) {
@@ -75,11 +75,10 @@ public class SellerService {
         var fromDbSeller = getSellerByMail(mail);
         fromDbSeller.setActive(false);
         sellerRepository.save(fromDbSeller);
-
         return sellerConverter.convertToDto(fromDbSeller);
     }
 
-    public void sendConfirmCode(String mail){
+    public void sendConfirmCode(String mail) {
         var seller = getSellerByMail(mail);
 
         ConfirmCode confirmCode = new ConfirmCode();
@@ -88,7 +87,7 @@ public class SellerService {
         sellerRepository.save(seller);
 
         String description = String.format(CONFIRM_CODE_DESCRIPTION, confirmCode.getCode());
-        mailSendService.sendMail(seller.getMail(),CONFIRM_CODE_TITLE,description);
+        mailSendService.sendMail(seller.getMail(), CONFIRM_CODE_TITLE, description);
     }
 
 }

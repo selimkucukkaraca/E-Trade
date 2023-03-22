@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubCategoryConverter {
 
-    public SubCategoryDto convertToDto(SubCategory from){
+    public SubCategoryDto convertToDto(SubCategory from) {
         return new SubCategoryDto(
                 from.getSubCategoryName()
         );
     }
 
-    public SubCategory toEntity(CreateSubCategoryRequest request){
+    public SubCategory toEntity(CreateSubCategoryRequest request) {
         return new SubCategory(
                 request.getSubCategoryName()
         );

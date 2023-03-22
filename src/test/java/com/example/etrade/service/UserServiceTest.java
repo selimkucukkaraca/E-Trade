@@ -24,16 +24,16 @@ class UserServiceTest extends TestUtil {
     private UserService userService;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         mailSendService = mock(MailSendService.class);
         confirmCodeService = mock(ConfirmCodeService.class);
         userConverter = mock(UserConverter.class);
         userRepository = mock(UserRepository.class);
-        userService = new UserService(mailSendService,confirmCodeService,userConverter,userRepository);
+        userService = new UserService(mailSendService, confirmCodeService, userConverter, userRepository);
     }
 
     @Test
-    public void saveUser_itShouldReturnUserDto(){
+    public void saveUser_itShouldReturnUserDto() {
 
         CreateUserRequest request = getCreateUserRequest();
         User user = getUserList().get(0);
@@ -46,7 +46,7 @@ class UserServiceTest extends TestUtil {
 
         UserDto response = userService.save(request);
 
-        assertEquals(response,userDto);
+        assertEquals(response, userDto);
 
         verify(userConverter).toEntity(request);
         verify(userRepository).existsUserByMail("test");
@@ -56,7 +56,8 @@ class UserServiceTest extends TestUtil {
     }
 
     @Test
-    public void delete(){
+    public void delete() {
+
         User user = getUserList().get(0);
         String mail = "test";
 
@@ -66,10 +67,11 @@ class UserServiceTest extends TestUtil {
 
         assert user != null;
         verify(userRepository).delete(user);
+
     }
 
     @Test
-    public void getByMail_itShouldReturnUserDto(){
+    public void getByMail_itShouldReturnUserDto() {
 
         User user = getUserList().get(0);
         UserDto userDto = getUserDtoList().get(0);
@@ -81,13 +83,14 @@ class UserServiceTest extends TestUtil {
 
         UserDto response = userService.getByMail(mail);
 
-        assertEquals(response,userDto);
+        assertEquals(response, userDto);
         verify(userRepository).findUserByMail(mail);
         verify(userConverter).convertToDto(user);
+
     }
 
     @Test
-    public void getUserByMail_itShouldReturnUser(){
+    public void getUserByMail_itShouldReturnUser() {
 
         User user = getUserList().get(0);
         String mail = "test";
@@ -96,9 +99,37 @@ class UserServiceTest extends TestUtil {
 
         User response = userService.getUserByMail(mail);
 
-        assertEquals(response,user);
+        assertEquals(response, user);
         verify(userRepository).findUserByMail(mail);
+
     }
 
-    //TODO  sendConfirmCode,active,deActive
+    @Test
+    public void deActiveUser_itShouldReturnUserDto() {
+        User user = getUserList().get(0);
+        UserDto userDto = getUserDtoList().get(0);
+
+        when(userRepository.save(user)).thenReturn(user);
+        when(userConverter.convertToDto(user)).thenReturn(userDto);
+        when(userRepository.findUserByMail("test")).thenReturn(Optional.of(user));
+
+        UserDto response = userService.deActivateUser("test");
+
+        assertEquals(userDto, response);
+        verify(userRepository).save(user);
+        verify(userConverter).convertToDto(user);
+        verify(userRepository).findUserByMail("test");
+
+    }
+
+    @Test
+    public void sendConfirmCode() {
+        //TODO
+    }
+
+    @Test
+    public void activeUser_itShouldReturnUserDto() {
+        //TODO
+    }
+
 }

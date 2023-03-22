@@ -21,14 +21,15 @@ class ProductServiceTest extends TestUtil {
     private ProductService productService;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         productRepository = mock(ProductRepository.class);
         productConverter = mock(ProductConverter.class);
-        productService = new ProductService(productRepository,productConverter);
+        productService = new ProductService(productRepository, productConverter);
     }
 
     @Test
-    public void saveProduct_itShouldReturnProductDto(){
+    public void saveProduct_itShouldReturnProductDto() {
+
         CreateProductRequest request = getCreateProductRequest();
         Product product = getProductList().get(0);
         ProductDto productDto = getProductDtoList().get(0);
@@ -39,14 +40,16 @@ class ProductServiceTest extends TestUtil {
 
         ProductDto response = productService.save(request);
 
-        assertEquals(response,productDto);
+        assertEquals(response, productDto);
         verify(productConverter).toEntity(request);
         verify(productRepository).save(product);
         verify(productConverter).convertToDto(product);
+
     }
 
     @Test
-    public void getByProductId_itShouldReturnProductDto(){
+    public void getByProductId_itShouldReturnProductDto() {
+
         Product product = getProductList().get(0);
         ProductDto productDto = getProductDtoList().get(0);
         String productId = "test";
@@ -57,14 +60,15 @@ class ProductServiceTest extends TestUtil {
 
         ProductDto response = productService.getByProductId(productId);
 
-        assertEquals(response,productDto);
+        assertEquals(response, productDto);
         verify(productRepository).findProductByProductId(productId);
         verify(productConverter).convertToDto(product);
 
     }
 
     @Test
-    public void getProductObjectByProductId_itShouldReturnProduct(){
+    public void getProductObjectByProductId_itShouldReturnProduct() {
+
         Product product = getProductList().get(0);
         String productId = "test";
 
@@ -72,24 +76,27 @@ class ProductServiceTest extends TestUtil {
 
         Product response = productService.getProductObjectByProductId(productId);
 
-        assertEquals(response,product);
+        assertEquals(response, product);
         verify(productRepository).findProductByProductId(productId);
+
     }
 
     @Test
-    public void updateProduct(){
+    public void updateProduct() {
+
         Product product = getProductList().get(0);
 
         when(productRepository.save(product)).thenReturn(product);
 
-         productService.updateProduct(product);
+        productService.updateProduct(product);
 
-         verify(productRepository).save(product);
+        verify(productRepository).save(product);
 
     }
 
     @Test
-    public void delete(){
+    public void delete() {
+
         Product product = getProductList().get(0);
         String productId = "test";
 
@@ -99,6 +106,6 @@ class ProductServiceTest extends TestUtil {
 
         assert product != null;
         verify(productRepository).delete(product);
-    }
 
+    }
 }

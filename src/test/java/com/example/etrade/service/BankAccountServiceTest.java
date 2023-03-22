@@ -15,39 +15,40 @@ class BankAccountServiceTest extends TestUtil {
     private BankAccountService bankAccountService;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         bankAccountRepository = mock(BankAccountRepository.class);
         bankAccountService = new BankAccountService(bankAccountRepository);
     }
 
     @Test
-    public void saveBankAccount_itShouldReturnBankAccount(){
+    public void saveBankAccount_itShouldReturnBankAccount() {
+
         BankAccount bankAccount = getBankAccountList().get(0);
 
         when(bankAccountRepository.save(bankAccount)).thenReturn(bankAccount);
 
         bankAccountService.save(bankAccount);
 
-        assertEquals("test",bankAccount.getCardNumber());
+        assertEquals("test", bankAccount.getCardNumber());
+
     }
 
     @Test
-    public void getByCardNumber_itShouldReturnBankAccount(){
+    public void getByCardNumber_itShouldReturnBankAccount() {
+
         BankAccount bankAccount = getBankAccountList().get(0);
         String cardNumber = "test";
 
         when(bankAccountRepository.findBankAccountByCardNumber(cardNumber)).thenReturn(bankAccount);
 
         BankAccount response = bankAccountService.getByCardNumber(cardNumber);
-        assertEquals(cardNumber,response.getCardNumber());
+        assertEquals(cardNumber, response.getCardNumber());
         verify(bankAccountRepository).findBankAccountByCardNumber(cardNumber);
 
     }
 
     @Test
-    public void validateCreditCard(){
+    public void validateCreditCard() {
         //TODO
     }
-
-
 }

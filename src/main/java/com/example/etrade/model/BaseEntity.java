@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 @ToString
 @MappedSuperclass
 public abstract class BaseEntity {
+
     private LocalDateTime createDate = LocalDateTime.now();
     private LocalDateTime updateDate;
+
 }

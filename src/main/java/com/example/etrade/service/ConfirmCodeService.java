@@ -13,11 +13,11 @@ public class ConfirmCodeService {
         this.confirmCodeRepository = confirmCodeRepository;
     }
 
-    public void delete(ConfirmCode confirmCode){
+    public void delete(ConfirmCode confirmCode) {
         confirmCodeRepository.delete(confirmCode);
     }
 
-    public void save(ConfirmCode confirmCode){
+    public void save(ConfirmCode confirmCode) {
         confirmCodeRepository.save(confirmCode);
     }
 }

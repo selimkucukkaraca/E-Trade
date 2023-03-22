@@ -19,4 +19,5 @@ public class PromoCodeDto {
     private String codeText;
     private LocalDate endDate;
     private UserDto userDto;
+
 }

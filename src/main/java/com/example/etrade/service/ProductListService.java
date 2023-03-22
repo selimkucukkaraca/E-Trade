@@ -24,7 +24,7 @@ public class ProductListService {
         this.brandService = brandService;
     }
 
-    public List<ProductDto> getProductByProductName(String productName){
+    public List<ProductDto> getProductByProductName(String productName) {
         return productRepository.findProductByProductName(productName)
                 .stream()
                 .map(productConverter::convertToDto)
@@ -36,13 +36,13 @@ public class ProductListService {
         return productRepository.findAll()
                 .stream()
                 .filter((product) ->
-                            product.getProductPrice() >= min && product.getProductPrice() <= max
+                        product.getProductPrice() >= min && product.getProductPrice() <= max
                 )
                 .map(productConverter::convertToDto)
                 .collect(Collectors.toList());
     }
 
-    public List<ProductDto> getProductByProductBrand(String brand){
+    public List<ProductDto> getProductByProductBrand(String brand) {
         Brand fromDbBrand = brandService.getBrandByBrand(brand);
         return productRepository.getProductByBrand(fromDbBrand)
                 .stream()

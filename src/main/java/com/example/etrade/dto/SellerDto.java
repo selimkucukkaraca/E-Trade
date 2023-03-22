@@ -12,4 +12,5 @@ public class SellerDto extends BaseDto {
     private String mail;
     private String imageUrl;
     private boolean isActive;
+
 }

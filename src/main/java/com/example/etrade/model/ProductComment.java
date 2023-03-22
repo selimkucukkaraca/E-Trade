@@ -25,7 +25,7 @@ public class ProductComment extends BaseEntity {
     @ManyToOne
     private User user;
 
-    public ProductComment(String title, String body, int star,User user,Product product) {
+    public ProductComment(String title, String body, int star, User user, Product product) {
         this.title = title;
         this.body = body;
         this.star = star;

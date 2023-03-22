@@ -1,6 +1,7 @@
 package com.example.etrade.dto.converter;
 
 import com.example.etrade.TestUtil;
+import com.example.etrade.dto.CategoryDto;
 import com.example.etrade.dto.request.CreateCategoryRequest;
 import com.example.etrade.model.Category;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +24,14 @@ class CategoryConverterTest extends TestUtil {
 
     @Test
     public void convertToDto_itShouldReturnCategoryDto(){
+        Category category = getCategoryList().get(0);
+        CategoryDto categoryDto = getCategoryDtoList().get(0);
 
+        when(categoryConverter.convertToDto(category)).thenReturn(categoryDto);
+
+        CategoryDto response = categoryConverter.convertToDto(category);
+
+        assertEquals(categoryDto,response);
     }
 
     @Test

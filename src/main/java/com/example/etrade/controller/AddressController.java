@@ -19,7 +19,7 @@ public class AddressController {
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(@RequestParam String addressId){
+    public ResponseEntity<?> delete(@RequestParam String addressId) {
         addressService.delete(addressId);
         return ResponseEntity
                 .noContent()
@@ -27,13 +27,13 @@ public class AddressController {
     }
 
     @GetMapping("/get-address-by-address-id/{addressId}")
-    public ResponseEntity<AddressDto> getAddressByAddressId(@PathVariable String addressId){
+    public ResponseEntity<AddressDto> getAddressByAddressId(@PathVariable String addressId) {
         return ResponseEntity
                 .ok(addressService.getAddressByAddressId(addressId));
     }
 
     @GetMapping("/get-address-by-user-mail/{mail}")
-    public ResponseEntity<List<AddressDto>> getAddressListByUserMail(@PathVariable String mail){
+    public ResponseEntity<List<AddressDto>> getAddressListByUserMail(@PathVariable String mail) {
         return ResponseEntity
                 .ok(addressService.getAddressListByUserMail(mail));
     }

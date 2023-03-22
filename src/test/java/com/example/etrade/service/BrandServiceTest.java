@@ -21,14 +21,14 @@ class BrandServiceTest extends TestUtil {
     private BrandService brandService;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         brandRepository = mock(BrandRepository.class);
         brandConverter = mock(BrandConverter.class);
-        brandService = new BrandService(brandRepository,brandConverter);
+        brandService = new BrandService(brandRepository, brandConverter);
     }
 
     @Test
-    public void saveBrand_itShouldReturnBrandDto(){
+    public void saveBrand_itShouldReturnBrandDto() {
 
         CreateBrandRequest request = getCreateBrandRequest();
         Brand brand = getBrandList().get(0);
@@ -40,15 +40,17 @@ class BrandServiceTest extends TestUtil {
 
         BrandDto response = brandService.save(request);
 
-        assertEquals(response,brandDto);
+        assertEquals(response, brandDto);
 
         verify(brandConverter).toEntity(request);
         verify(brandRepository).save(brand);
         verify(brandConverter).convertToDto(brand);
+
     }
 
     @Test
-    public void delete(){
+    public void delete() {
+
         Brand brand = getBrandList().get(0);
         String brandId = "test";
 
@@ -58,10 +60,12 @@ class BrandServiceTest extends TestUtil {
 
         assert brand != null;
         verify(brandRepository).delete(brand);
+
     }
 
     @Test
-    public void getBrandByBrandId_itShouldReturnBrand(){
+    public void getBrandByBrandId_itShouldReturnBrand() {
+
         Brand brand = getBrandList().get(0);
         String brandId = "test";
 
@@ -69,24 +73,22 @@ class BrandServiceTest extends TestUtil {
 
         Brand response = brandService.getBrandByBrandId(brandId);
 
-        assertEquals(response,brand);
+        assertEquals(response, brand);
         verify(brandRepository).findBrandByBrandId(brandId);
 
     }
 
     @Test
-    public void getBrandByBrand_itShouldReturnBrand(){
+    public void getBrandByBrand_itShouldReturnBrand() {
+
         Brand brand = getBrandList().get(0);
 
         when(brandRepository.findBrandByBrand("test")).thenReturn(brand);
 
         Brand response = brandService.getBrandByBrand("test");
 
-        assertEquals(response,brand);
+        assertEquals(response, brand);
         verify(brandRepository).findBrandByBrand("test");
+
     }
-
-
-
-
 }

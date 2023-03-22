@@ -18,37 +18,37 @@ public class AddressService {
     private final UserService userService;
 
     public AddressService(AddressRepository addressRepository,
-                          AddressConverter addressConverter,UserService userService) {
+                          AddressConverter addressConverter, UserService userService) {
         this.addressRepository = addressRepository;
         this.addressConverter = addressConverter;
         this.userService = userService;
     }
 
-    public Address save(CreateAddressRequest request){
+    public Address save(CreateAddressRequest request) {
         var saved = addressConverter.toEntity(request);
         return addressRepository.save(saved);
     }
 
-    public void delete(String addressId){
+    public void delete(String addressId) {
         var fromAddress = getAddress(addressId);
         addressRepository.delete(fromAddress);
     }
 
-    public AddressDto getAddressByAddressId(String addressId){
+    public AddressDto getAddressByAddressId(String addressId) {
         return addressRepository.findAddressByAddressId(addressId)
-                .orElseThrow(()-> new RuntimeException(""));
+                .orElseThrow(() -> new RuntimeException(""));
     }
 
-    public List<AddressDto> getAddressListByUserMail(String mail){
-       var fromUser = userService.getUserByMail(mail);
-       return fromUser.getAddress()
-               .stream()
-               .map(addressConverter::convertToDto)
-               .collect(Collectors.toList());
+    public List<AddressDto> getAddressListByUserMail(String mail) {
+        var fromUser = userService.getUserByMail(mail);
+        return fromUser.getAddress()
+                .stream()
+                .map(addressConverter::convertToDto)
+                .collect(Collectors.toList());
     }
 
-    public Address getAddress(String addressId){
+    public Address getAddress(String addressId) {
         return addressRepository.getAddressByAddressId(addressId)
-                .orElseThrow(()-> new RuntimeException(""));
+                .orElseThrow(() -> new RuntimeException(""));
     }
 }

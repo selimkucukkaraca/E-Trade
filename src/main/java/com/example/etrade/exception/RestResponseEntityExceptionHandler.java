@@ -24,12 +24,12 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
 
     @ExceptionHandler(NotFoundException.class)
-    protected ResponseEntity<?> notFoundException(NotFoundException exception){
+    protected ResponseEntity<?> notFoundException(NotFoundException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(GenericExistException.class)
-    protected ResponseEntity<?> genericExistException(GenericExistException exception){
-        return new ResponseEntity<>(exception.getMessage(),HttpStatus.BAD_REQUEST);
+    protected ResponseEntity<?> genericExistException(GenericExistException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

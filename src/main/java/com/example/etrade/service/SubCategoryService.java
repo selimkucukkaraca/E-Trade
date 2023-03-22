@@ -4,7 +4,6 @@ import com.example.etrade.dto.SubCategoryDto;
 import com.example.etrade.dto.converter.SubCategoryConverter;
 import com.example.etrade.dto.request.CreateSubCategoryRequest;
 import com.example.etrade.exception.generic.GenericExistException;
-import com.example.etrade.model.SubCategory;
 import com.example.etrade.repository.SubCategoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +21,11 @@ public class SubCategoryService {
         this.categoryService = categoryService;
     }
 
-    public SubCategoryDto save(CreateSubCategoryRequest request){
+    public SubCategoryDto save(CreateSubCategoryRequest request) {
         var category = categoryService.getByCategoryName(request.getCategoryName());
         var saved = subCategoryConverter.toEntity(request);
 
-        if(subCategoryRepository.existsSubCategoryBySubCategoryName(saved.getSubCategoryName())){
+        if (subCategoryRepository.existsSubCategoryBySubCategoryName(saved.getSubCategoryName())) {
             throw new GenericExistException("Sub category already exist");
         }
 
@@ -36,7 +35,7 @@ public class SubCategoryService {
         return subCategoryConverter.convertToDto(saved);
     }
 
-    public void delete(String subCategoryName){
+    public void delete(String subCategoryName) {
         var subCategory = subCategoryRepository.findSubCategoryBySubCategoryName(subCategoryName);
         subCategoryRepository.delete(subCategory);
     }

@@ -20,9 +20,9 @@ public class SellerCommentService {
         this.sellerCommentConverter = sellerCommentConverter;
     }
 
-    public SellerCommentDto save(CreateSellerCommentRequest request){
+    public SellerCommentDto save(CreateSellerCommentRequest request) {
         var saved = sellerCommentConverter.toEntity(request);
-        if (request.getStar() < 0){
+        if (request.getStar() < 0) {
             throw new GenericExistException("you must rating by star ");
         }
         sellerCommentRepository.save(saved);
@@ -35,7 +35,7 @@ public class SellerCommentService {
         sellerCommentRepository.delete(fromSellerComment.get());
     }
 
-    public SellerCommentDto getSellerBySellerCommentId(String sellerCommentId){
+    public SellerCommentDto getSellerBySellerCommentId(String sellerCommentId) {
         var sellerComment = sellerCommentRepository.findSellerCommentBySellerCommentId(sellerCommentId)
                 .orElseThrow(() -> new NotFoundException(""));
         return sellerCommentConverter.convertToDto(sellerComment);

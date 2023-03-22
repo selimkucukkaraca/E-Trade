@@ -22,25 +22,26 @@ class ConfirmCodeServiceTest extends TestUtil {
 
     @Test
     public void saveConfirmCode() {
+
         ConfirmCode confirmCode = getConfirmCodeList().get(0);
 
         when(confirmCodeRepository.save(confirmCode)).thenReturn(confirmCode);
 
         confirmCodeService.save(confirmCode);
 
-        assertEquals(0,confirmCode.getCode());
+        assertEquals(0, confirmCode.getCode());
         verify(confirmCodeRepository).save(confirmCode);
 
     }
 
     @Test
-    public void deleteConfirmCode(){
+    public void deleteConfirmCode() {
+
         ConfirmCode confirmCode = getConfirmCodeList().get(0);
 
         confirmCodeService.delete(confirmCode);
 
         verify(confirmCodeRepository).delete(confirmCode);
+
     }
-
-
 }

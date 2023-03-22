@@ -26,17 +26,17 @@ class SellerServiceTest extends TestUtil {
     private SellerService sellerService;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         mailSendService = mock(MailSendService.class);
         confirmCodeService = mock(ConfirmCodeService.class);
         confirmCodeRepository = mock(ConfirmCodeRepository.class);
         sellerConverter = mock(SellerConverter.class);
         sellerRepository = mock(SellerRepository.class);
-        sellerService = new SellerService(mailSendService,confirmCodeService,confirmCodeRepository,sellerConverter,sellerRepository);
+        sellerService = new SellerService(mailSendService, confirmCodeService, confirmCodeRepository, sellerConverter, sellerRepository);
     }
 
     @Test
-    public void saveSeller_itShouldReturnSellerDto(){
+    public void saveSeller_itShouldReturnSellerDto() {
 
         CreateSellerRequest request = getCreateSellerRequest();
         Seller seller = getSellerList().get(0);
@@ -49,16 +49,18 @@ class SellerServiceTest extends TestUtil {
 
         SellerDto response = sellerService.save(request);
 
-        assertEquals(response,sellerDto);
+        assertEquals(response, sellerDto);
 
         verify(sellerConverter).toEntity(request);
         verify(sellerRepository.existsSellerByMail("test"));
         verify(sellerRepository).save(seller);
         verify(sellerConverter).convertToDto(seller);
+
     }
 
     @Test
-    public void getByMail_itShouldReturnSellerDto(){
+    public void getByMail_itShouldReturnSellerDto() {
+
         Seller seller = getSellerList().get(0);
         SellerDto sellerDto = getSellerDtoList().get(0);
         String mail = "test";
@@ -69,13 +71,14 @@ class SellerServiceTest extends TestUtil {
 
         SellerDto response = sellerService.getByMail(mail);
 
-        assertEquals(response,sellerDto);
+        assertEquals(response, sellerDto);
         verify(sellerRepository).findSellerByMail(mail);
         verify(sellerConverter).convertToDto(seller);
+
     }
 
     @Test
-    public void getSellerByMail_itShouldReturnSeller(){
+    public void getSellerByMail_itShouldReturnSeller() {
 
         Seller seller = getSellerList().get(0);
         String mail = "test";
@@ -84,12 +87,14 @@ class SellerServiceTest extends TestUtil {
 
         Seller response = sellerService.getSellerByMail(mail);
 
-        assertEquals(response,seller);
+        assertEquals(response, seller);
         verify(sellerRepository).findSellerByMail(mail);
+
     }
 
     @Test
-    public void delete(){
+    public void delete() {
+
         Seller seller = getSellerList().get(0);
         String mail = "test";
 
@@ -99,6 +104,7 @@ class SellerServiceTest extends TestUtil {
 
         assert seller != null;
         verify(sellerRepository).delete(seller);
+
     }
 
     //TODO sendConfirmCode,active,deActive

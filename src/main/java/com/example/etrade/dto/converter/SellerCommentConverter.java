@@ -23,7 +23,7 @@ public class SellerCommentConverter {
         this.userService = userService;
     }
 
-    public SellerCommentDto convertToDto(SellerComment from){
+    public SellerCommentDto convertToDto(SellerComment from) {
         return new SellerCommentDto(
                 from.getTitle(),
                 from.getBody(),
@@ -33,7 +33,7 @@ public class SellerCommentConverter {
         );
     }
 
-    public SellerComment toEntity(CreateSellerCommentRequest request){
+    public SellerComment toEntity(CreateSellerCommentRequest request) {
         return new SellerComment(
                 request.getTitle(),
                 request.getBody(),

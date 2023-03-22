@@ -19,18 +19,17 @@ public class BrandController {
     }
 
     @PostMapping
-    public ResponseEntity<BrandDto> save(@RequestBody CreateBrandRequest request){
+    public ResponseEntity<BrandDto> save(@RequestBody CreateBrandRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(brandService.save(request));
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(@RequestParam String brandId){
+    public ResponseEntity<?> delete(@RequestParam String brandId) {
         brandService.deleteBrandByBrandId(brandId);
         return ResponseEntity
                 .noContent()
                 .build();
     }
-
 }

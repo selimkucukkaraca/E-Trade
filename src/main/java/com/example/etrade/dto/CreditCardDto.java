@@ -12,4 +12,5 @@ public class CreditCardDto extends BaseDto {
     private int cvv;
     private String expirationDate;
     private String nameAndSurname;
+
 }

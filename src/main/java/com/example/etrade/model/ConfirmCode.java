@@ -15,9 +15,10 @@ import java.util.Random;
 @NoArgsConstructor
 @Entity
 public class ConfirmCode extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int code = new Random().nextInt(1000);
-}
 
+}

@@ -6,7 +6,7 @@ import lombok.*;
 @Setter
 @ToString
 @AllArgsConstructor
-public class ProductDto extends BaseDto{
+public class ProductDto extends BaseDto {
 
     private String productName;
     private String productDetails;

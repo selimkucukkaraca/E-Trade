@@ -25,13 +25,13 @@ public class CartService {
         this.productService = productService;
     }
 
-    public CartDto save(String mail,String productId){
+    public CartDto save(String mail, String productId) {
         var fromUser = userService.getUserByMail(mail);
         var fromProduct = productService.getProductObjectByProductId(productId);
         List<Product> products = List.of(fromProduct);
 
         Cart cart = new Cart(products, fromUser);
-        fromProduct.setStock(fromProduct.getStock()-1);
+        fromProduct.setStock(fromProduct.getStock() - 1);
         cartRepository.save(cart);
         productService.updateProduct(fromProduct);
         return cartConverter.convertToDto(cart);
@@ -41,9 +41,8 @@ public class CartService {
         return cartRepository.findCartByCartId(cartId);
     }
 
-    public void deleteByCartId(String cartId){
+    public void deleteByCartId(String cartId) {
         var fromCart = getCart(cartId);
         cartRepository.delete(fromCart);
     }
-
 }

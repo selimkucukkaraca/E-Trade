@@ -7,12 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface ProductRepository extends JpaRepository<Product,Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    void deleteProductByProductId(String productId);
     Optional<Product> findProductByProductId(String productId);
+
     Optional<Product> getProductByBrand(Brand brand);
+
     List<Product> findProductByProductName(String productName);
-    List<Product> findProductByStock(int stock);
 
 }

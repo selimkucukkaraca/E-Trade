@@ -19,14 +19,14 @@ public class SellerController {
     }
 
     @PostMapping
-    public ResponseEntity<SellerDto> save(@RequestBody CreateSellerRequest request){
+    public ResponseEntity<SellerDto> save(@RequestBody CreateSellerRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(sellerService.save(request));
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(@RequestParam String mail){
+    public ResponseEntity<?> delete(@RequestParam String mail) {
         sellerService.delete(mail);
         return ResponseEntity
                 .noContent()
@@ -34,7 +34,7 @@ public class SellerController {
     }
 
     @PostMapping("/send-confirm-code")
-    public ResponseEntity<?> sendConfirmCode(@RequestParam String mail){
+    public ResponseEntity<?> sendConfirmCode(@RequestParam String mail) {
         sellerService.sendConfirmCode(mail);
         return ResponseEntity
                 .noContent()
@@ -42,19 +42,19 @@ public class SellerController {
     }
 
     @PatchMapping("/active-seller")
-    public ResponseEntity<SellerDto> activateSeller(@RequestParam String mail, @RequestParam int code){
+    public ResponseEntity<SellerDto> activateSeller(@RequestParam String mail, @RequestParam int code) {
         return ResponseEntity
                 .ok(sellerService.activeSeller(mail, code));
     }
 
     @PatchMapping("/deActive-seller")
-    public ResponseEntity<SellerDto> deActiveSeller(@RequestParam String mail){
+    public ResponseEntity<SellerDto> deActiveSeller(@RequestParam String mail) {
         return ResponseEntity
                 .ok(sellerService.deActivateSeller(mail));
     }
 
     @GetMapping("/{mail}")
-    public ResponseEntity<SellerDto> getByMail(@PathVariable String mail){
+    public ResponseEntity<SellerDto> getByMail(@PathVariable String mail) {
         return ResponseEntity
                 .ok(sellerService.getByMail(mail));
     }

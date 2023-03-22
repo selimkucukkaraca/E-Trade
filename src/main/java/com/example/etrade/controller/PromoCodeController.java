@@ -24,5 +24,4 @@ public class PromoCodeController {
                 .status(HttpStatus.CREATED)
                 .body(promoCodeService.save(request));
     }
-
 }

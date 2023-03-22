@@ -2,7 +2,6 @@ package com.example.etrade.service;
 
 import com.example.etrade.TestUtil;
 import com.example.etrade.dto.ProductCommentDto;
-import com.example.etrade.dto.PromoCodeDto;
 import com.example.etrade.dto.converter.ProductCommentConverter;
 import com.example.etrade.dto.request.CreateProductCommentRequest;
 import com.example.etrade.model.ProductComment;
@@ -22,14 +21,15 @@ class ProductCommentServiceTest extends TestUtil {
     private ProductCommentService productCommentService;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         productCommentRepository = mock(ProductCommentRepository.class);
         productCommentConverter = mock(ProductCommentConverter.class);
-        productCommentService = new ProductCommentService(productCommentRepository,productCommentConverter);
+        productCommentService = new ProductCommentService(productCommentRepository, productCommentConverter);
     }
 
     @Test
-    public void saveProductComment_itShouldReturnProductCommentDto(){
+    public void saveProductComment_itShouldReturnProductCommentDto() {
+
         CreateProductCommentRequest createProductCommentRequest = getCreateProductCommentRequest();
         ProductComment productComment = getProductCommentList().get(0);
         ProductCommentDto productCommentDto = getProductCommentDtoList().get(0);
@@ -40,14 +40,16 @@ class ProductCommentServiceTest extends TestUtil {
 
         ProductCommentDto response = productCommentService.save(createProductCommentRequest);
 
-        assertEquals(response,productCommentDto);
+        assertEquals(response, productCommentDto);
         verify(productCommentConverter).toEntity(createProductCommentRequest);
         verify(productCommentRepository).save(productComment);
         verify(productCommentConverter).convertToDto(productComment);
+
     }
 
     @Test
-    public void delete(){
+    public void delete() {
+
         ProductComment productComment = getProductCommentList().get(0);
         String productCommentId = "test";
 
@@ -57,10 +59,12 @@ class ProductCommentServiceTest extends TestUtil {
 
         assert productComment != null;
         verify(productCommentRepository).delete(productComment);
+
     }
 
     @Test
-    public void getProductCommentByProductCommentId_itShouldReturnProductComment(){
+    public void getProductCommentByProductCommentId_itShouldReturnProductComment() {
+
         ProductComment productComment = getProductCommentList().get(0);
         String productCommentId = "test";
 
@@ -68,12 +72,14 @@ class ProductCommentServiceTest extends TestUtil {
 
         ProductComment response = productCommentService.getProductCommentByProductCommentId(productCommentId);
 
-        assertEquals(response,productComment);
+        assertEquals(response, productComment);
         verify(productCommentRepository).findProductCommentByProductCommentId(productCommentId);
+
     }
 
     @Test
-    public void getByProductCommentId_itShouldReturnProductCommentDto(){
+    public void getByProductCommentId_itShouldReturnProductCommentDto() {
+
         ProductComment productComment = getProductCommentList().get(0);
         ProductCommentDto productCommentDto = getProductCommentDtoList().get(0);
         String productCommentId = "test";
@@ -83,7 +89,7 @@ class ProductCommentServiceTest extends TestUtil {
         when(productCommentConverter.convertToDto(productComment)).thenReturn(productCommentDto);
 
         ProductCommentDto response = productCommentService.getByProductCommentId(productCommentId);
-        assertEquals(productCommentDto,response);
+        assertEquals(productCommentDto, response);
         verify(productCommentRepository).findProductCommentByProductCommentId(productCommentId);
         verify(productCommentConverter).convertToDto(productComment);
 

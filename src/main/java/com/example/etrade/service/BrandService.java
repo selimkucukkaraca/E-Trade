@@ -19,23 +19,23 @@ public class BrandService {
         this.brandConverter = brandConverter;
     }
 
-    public BrandDto save(CreateBrandRequest request){
+    public BrandDto save(CreateBrandRequest request) {
         var saved = brandConverter.toEntity(request);
         brandRepository.save(saved);
         return brandConverter.convertToDto(saved);
     }
 
-    public void deleteBrandByBrandId(String brandId){
+    public void deleteBrandByBrandId(String brandId) {
         var brand = getBrandByBrandId(brandId);
         brandRepository.delete(brand);
     }
 
-    public Brand getBrandByBrandId(String brandId){
+    public Brand getBrandByBrandId(String brandId) {
         return brandRepository.findBrandByBrandId(brandId)
                 .orElseThrow(() -> new NotFoundException(""));
     }
 
-    public Brand getBrandByBrand(String brand){
+    public Brand getBrandByBrand(String brand) {
         return brandRepository.findBrandByBrand(brand);
     }
 }

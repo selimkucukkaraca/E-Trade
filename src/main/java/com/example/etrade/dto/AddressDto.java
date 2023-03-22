@@ -6,11 +6,12 @@ import lombok.*;
 @Setter
 @ToString
 @AllArgsConstructor
-public class AddressDto extends BaseDto{
+public class AddressDto extends BaseDto {
 
     private String city;
     private String district;
     private String street;
     private String apartmentNumber;
     private String phoneNumber;
+
 }

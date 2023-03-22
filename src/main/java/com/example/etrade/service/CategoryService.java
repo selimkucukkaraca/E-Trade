@@ -19,25 +19,25 @@ public class CategoryService {
         this.categoryConverter = categoryConverter;
     }
 
-    public CategoryDto save(CreateCategoryRequest request){
+    public CategoryDto save(CreateCategoryRequest request) {
         var saved = categoryConverter.toEntity(request);
-        if (categoryRepository.existsCategoryByCategoryName(saved.getCategoryName())){
+        if (categoryRepository.existsCategoryByCategoryName(saved.getCategoryName())) {
             throw new GenericExistException("Category already exist");
         }
         categoryRepository.save(saved);
         return categoryConverter.convertToDto(saved);
     }
 
-    public void deleteCategory(String categoryName){
+    public void deleteCategory(String categoryName) {
         var category = getByCategoryName(categoryName);
         categoryRepository.delete(category);
     }
 
-    public Category getByCategoryName(String categoryName){
+    public Category getByCategoryName(String categoryName) {
         return categoryRepository.findCategoryByCategoryName(categoryName);
     }
 
-    protected void updateCategory(Category category){
+    protected void updateCategory(Category category) {
         categoryRepository.save(category);
     }
 

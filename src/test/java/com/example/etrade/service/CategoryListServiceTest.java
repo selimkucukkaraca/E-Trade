@@ -18,14 +18,15 @@ class CategoryListServiceTest extends TestUtil {
     private CategoryListService categoryListService;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         categoryRepository = mock(CategoryRepository.class);
         categoryConverter = mock(CategoryConverter.class);
-        categoryListService = new CategoryListService(categoryRepository,categoryConverter);
+        categoryListService = new CategoryListService(categoryRepository, categoryConverter);
     }
 
     @Test
-    public void getCategoryByCategoryName_itShouldReturnCategoryDto(){
+    public void getCategoryByCategoryName_itShouldReturnCategoryDto() {
+
         CategoryDto categoryDto = getCategoryDtoList().get(0);
         Category category = getCategoryList().get(0);
         String categoryName = "test";
@@ -35,9 +36,9 @@ class CategoryListServiceTest extends TestUtil {
 
         CategoryDto response = categoryListService.getCategoryByCategoryName(categoryName);
 
-        assertEquals(response,categoryDto);
+        assertEquals(response, categoryDto);
         verify(categoryConverter).convertToDto(category);
         verify(categoryRepository).findCategoryByCategoryName(categoryName);
-    }
 
+    }
 }

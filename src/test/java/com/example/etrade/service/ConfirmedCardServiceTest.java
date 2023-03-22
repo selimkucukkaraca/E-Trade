@@ -24,26 +24,26 @@ class ConfirmedCardServiceTest extends TestUtil {
     }
 
     @Test
-    public void saveConfirmedCart_itShouldReturnConfirmedCart(){
+    public void saveConfirmedCart_itShouldReturnConfirmedCart() {
+
         ConfirmedCart confirmedCart = getConfirmedCartList().get(0);
 
         when(confirmedCartRepository.save(confirmedCart)).thenReturn(confirmedCart);
 
         ConfirmedCart response = confirmedCardService.save(confirmedCart);
 
-        assertEquals(confirmedCart,response);
+        assertEquals(confirmedCart, response);
         verify(confirmedCartRepository).save(confirmedCart);
-    }
-
-    @Test
-    public void getAll_itShouldReturnConfirmedCartDtoList(){
 
     }
 
     @Test
-    public void toDto_itShouldReturnConfirmedCartDto(){
+    public void getAll_itShouldReturnConfirmedCartDtoList() {
 
     }
 
+    @Test
+    public void toDto_itShouldReturnConfirmedCartDto() {
 
+    }
 }

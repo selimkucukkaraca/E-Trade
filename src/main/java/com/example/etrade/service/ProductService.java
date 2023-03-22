@@ -19,29 +19,29 @@ public class ProductService {
         this.productConverter = productConverter;
     }
 
-    public ProductDto save(CreateProductRequest request){
+    public ProductDto save(CreateProductRequest request) {
         var saved = productConverter.toEntity(request);
         productRepository.save(saved);
         return productConverter.convertToDto(saved);
     }
 
-    public void deleteByProductId(String productId){
+    public void deleteByProductId(String productId) {
         var product = getProductObjectByProductId(productId);
         productRepository.delete(product);
     }
 
-    public ProductDto getByProductId(String productId){
+    public ProductDto getByProductId(String productId) {
         var fromDbProduct = productRepository.findProductByProductId(productId)
                 .orElseThrow(() -> new NotFoundException("ProductId not found: " + productId));
         return productConverter.convertToDto(fromDbProduct);
     }
 
-    public Product getProductObjectByProductId(String productId){
+    public Product getProductObjectByProductId(String productId) {
         return productRepository.findProductByProductId(productId)
                 .orElseThrow(() -> new NotFoundException(""));
     }
 
-    protected void updateProduct(Product product){
+    protected void updateProduct(Product product) {
         productRepository.save(product);
     }
 

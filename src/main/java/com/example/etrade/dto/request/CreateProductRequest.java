@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class CreateProductRequest {
+
     private String productName;
     private String productDetails;
     private double productPrice;
@@ -13,4 +14,5 @@ public class CreateProductRequest {
     private String productImageUrl;
     private String brand;
     private String categoryName;
+
 }

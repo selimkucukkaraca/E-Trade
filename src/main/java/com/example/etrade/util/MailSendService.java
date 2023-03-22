@@ -11,7 +11,7 @@ public class MailSendService {
 
     private final JavaMailSender javaMailSender;
 
-    public void sendMail(String to, String title, String body){
+    public void sendMail(String to, String title, String body) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom("e-trade");
         mailMessage.setTo(to);

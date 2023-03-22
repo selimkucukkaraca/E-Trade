@@ -19,14 +19,14 @@ public class CartController {
     }
 
     @PostMapping
-    public ResponseEntity<CartDto> save(@RequestParam String mail, @RequestParam String productId){
+    public ResponseEntity<CartDto> save(@RequestParam String mail, @RequestParam String productId) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(cartService.save(mail,productId));
+                .body(cartService.save(mail, productId));
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteByCartId(@RequestParam String cartId){
+    public ResponseEntity<?> deleteByCartId(@RequestParam String cartId) {
         cartService.deleteByCartId(cartId);
         return ResponseEntity
                 .noContent()

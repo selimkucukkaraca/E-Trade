@@ -19,12 +19,12 @@ public class SubCategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<SubCategoryDto> save(@RequestBody CreateSubCategoryRequest request){
+    public ResponseEntity<SubCategoryDto> save(@RequestBody CreateSubCategoryRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(subCategoryService.save(request));
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(@RequestParam String subCategoryName){
+    public ResponseEntity<?> delete(@RequestParam String subCategoryName) {
         subCategoryService.delete(subCategoryName);
         return ResponseEntity
                 .noContent()

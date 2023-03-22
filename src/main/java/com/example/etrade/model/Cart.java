@@ -12,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Cart extends BaseEntity{
+public class Cart extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

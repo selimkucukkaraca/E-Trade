@@ -5,13 +5,15 @@ import com.example.etrade.dto.AddressDto;
 import com.example.etrade.dto.converter.AddressConverter;
 import com.example.etrade.dto.request.CreateAddressRequest;
 import com.example.etrade.model.Address;
+import com.example.etrade.model.User;
 import com.example.etrade.repository.AddressRepository;
+import com.example.etrade.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.stubbing.OngoingStubbing;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -22,17 +24,19 @@ class AddressServiceTest extends TestUtil {
     private AddressConverter addressConverter;
     private UserService userService;
     private AddressService addressService;
+    private UserRepository userRepository;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         addressRepository = mock(AddressRepository.class);
         addressConverter = mock(AddressConverter.class);
         userService = mock(UserService.class);
-        addressService = new AddressService(addressRepository,addressConverter,userService);
+        userRepository = mock(UserRepository.class);
+        addressService = new AddressService(addressRepository, addressConverter, userService);
     }
 
     @Test
-    public void saveAddress_itShouldReturnAddressDto(){
+    public void saveAddress_itShouldReturnAddressDto() {
 
         CreateAddressRequest request = getCreateAddressRequest();
         Address address = getAddressList().get(0);
@@ -42,14 +46,14 @@ class AddressServiceTest extends TestUtil {
 
         Address response = addressService.save(request);
 
-        assertEquals(response,address);
+        assertEquals(response, address);
         verify(addressConverter).toEntity(request);
         verify(addressRepository).save(address);
-
     }
 
     @Test
     public void delete() {
+
         String addressId = "test";
         Address address = getAddressList().get(0);
 
@@ -60,7 +64,7 @@ class AddressServiceTest extends TestUtil {
     }
 
     @Test
-    public void getAddressByAddressId_itShouldReturnAddressDto(){
+    public void getAddressByAddressId_itShouldReturnAddressDto() {
 
         AddressDto addressDto = getAddressDtoList().get(0);
         String addressId = "test";
@@ -69,18 +73,31 @@ class AddressServiceTest extends TestUtil {
 
         AddressDto response = addressService.getAddressByAddressId(addressId);
 
-        assertEquals(response,addressDto);
+        assertEquals(response, addressDto);
         verify(addressRepository).findAddressByAddressId(addressId);
-    }
 
-
-    @Test
-    public void getAddressListByUserMail_itShouldReturnAddressDtoList(){
-        //TODO
     }
 
     @Test
-    public void getAddress_itShouldReturnAddress(){
+    public void getAddressListByUserMail_itShouldReturnAddressDtoList() {
+
+        User user = getUserList().get(0);
+        String mail = user.getMail();
+        List<AddressDto> addressDtoList = getAddressDtoList();
+
+        when(userRepository.findUserByMail(mail)).thenReturn(Optional.of(user));
+        when(userService.getUserByMail(mail)).thenReturn(user);
+        when(user.getAddress().stream().map(addressConverter::convertToDto).collect(Collectors.toList())).thenReturn(addressDtoList);
+
+        List<AddressDto> response = addressService.getAddressListByUserMail(mail);
+
+        assertEquals(addressDtoList, response);
+
+    }
+
+    @Test
+    public void getAddress_itShouldReturnAddress() {
+
         Address address = getAddressList().get(0);
         String addressId = "test";
 
@@ -88,12 +105,8 @@ class AddressServiceTest extends TestUtil {
 
         Address response = addressService.getAddress(addressId);
 
-        assertEquals(response,address);
+        assertEquals(response, address);
         verify(addressRepository).getAddressByAddressId(addressId);
+
     }
-
-
-
-
-
 }

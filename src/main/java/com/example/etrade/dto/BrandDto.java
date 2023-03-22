@@ -10,4 +10,5 @@ public class BrandDto {
 
     private String brand;
     private String brandId;
+
 }

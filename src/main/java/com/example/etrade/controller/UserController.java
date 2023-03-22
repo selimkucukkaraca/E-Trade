@@ -19,23 +19,22 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> save(@RequestBody CreateUserRequest request){
+    public ResponseEntity<UserDto> save(@RequestBody CreateUserRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(userService.save(request));
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(@RequestParam String mail){
+    public ResponseEntity<?> delete(@RequestParam String mail) {
         userService.delete(mail);
         return ResponseEntity
                 .noContent()
                 .build();
     }
 
-
     @PostMapping("/send-confirm-code")
-    public ResponseEntity<?> sendConfirmCode(@RequestParam String mail){
+    public ResponseEntity<?> sendConfirmCode(@RequestParam String mail) {
         userService.sendConfirmCode(mail);
         return ResponseEntity
                 .noContent()
@@ -43,19 +42,19 @@ public class UserController {
     }
 
     @GetMapping("/{mail}")
-    public ResponseEntity<UserDto> getByMail(@PathVariable String mail){
+    public ResponseEntity<UserDto> getByMail(@PathVariable String mail) {
         return ResponseEntity
                 .ok(userService.getByMail(mail));
     }
 
     @PatchMapping("/active-user")
-    public ResponseEntity<UserDto> activateUser(@RequestParam String mail, @RequestParam int code){
+    public ResponseEntity<UserDto> activateUser(@RequestParam String mail, @RequestParam int code) {
         return ResponseEntity
                 .ok(userService.activeUser(mail, code));
     }
 
     @PatchMapping("/deActive-user")
-    public ResponseEntity<UserDto> deActiveUser(@RequestParam String mail){
+    public ResponseEntity<UserDto> deActiveUser(@RequestParam String mail) {
         return ResponseEntity
                 .ok(userService.deActivateUser(mail));
     }

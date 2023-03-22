@@ -1,8 +1,7 @@
 package com.example.etrade.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.example.etrade.TestUtil;
 
-class BuyProductServiceTest {
-
+class BuyProductServiceTest extends TestUtil {
     //TODO
 }

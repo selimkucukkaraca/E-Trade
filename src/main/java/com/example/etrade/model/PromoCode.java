@@ -14,7 +14,7 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor
 @Entity
-public class PromoCode extends BaseEntity{
+public class PromoCode extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -20,15 +20,17 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDto> save(@RequestBody @Valid CreateCategoryRequest request){
+    public ResponseEntity<CategoryDto> save(@RequestBody @Valid CreateCategoryRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(categoryService.save(request));
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> delete(@RequestParam String categoryName){
+    public ResponseEntity<Void> delete(@RequestParam String categoryName) {
         categoryService.deleteCategory(categoryName);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity
+                .noContent()
+                .build();
     }
 }

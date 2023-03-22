@@ -17,10 +17,10 @@ public class BuyProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> buy(@RequestBody ConfirmCartRequest request){
+    public ResponseEntity<Void> buy(@RequestBody ConfirmCartRequest request) {
         buyProductService.buy(request);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity
+                .noContent()
+                .build();
     }
-
-
 }

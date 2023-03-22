@@ -19,14 +19,14 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDto>save(@RequestBody CreateProductRequest request){
+    public ResponseEntity<ProductDto> save(@RequestBody CreateProductRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(productService.save(request));
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(@RequestParam String productId){
+    public ResponseEntity<?> delete(@RequestParam String productId) {
         productService.deleteByProductId(productId);
         return ResponseEntity
                 .noContent()
@@ -34,7 +34,7 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    public ResponseEntity<ProductDto> getByProductId(@PathVariable String productId){
+    public ResponseEntity<ProductDto> getByProductId(@PathVariable String productId) {
         return ResponseEntity
                 .ok(productService.getByProductId(productId));
     }

@@ -1,18 +1,21 @@
 package com.example.etrade.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.Hibernate;
 
+import java.util.Objects;
 import java.util.UUID;
-
 
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-public class ConfirmedCart extends BaseEntity{
+public class ConfirmedCart extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,5 +29,18 @@ public class ConfirmedCart extends BaseEntity{
     public ConfirmedCart(Cart carts, User user) {
         this.carts = carts;
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        ConfirmedCart that = (ConfirmedCart) o;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

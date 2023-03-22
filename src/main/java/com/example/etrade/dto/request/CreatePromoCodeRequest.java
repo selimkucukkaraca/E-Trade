@@ -13,4 +13,5 @@ public class CreatePromoCodeRequest {
     private String code;
     private double amount;
     private LocalDate endDate;
+
 }

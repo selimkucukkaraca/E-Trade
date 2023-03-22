@@ -1,17 +1,10 @@
 package com.example.etrade.service;
 
 import com.example.etrade.TestUtil;
-import com.example.etrade.dto.ProductDto;
 import com.example.etrade.dto.converter.ProductConverter;
-import com.example.etrade.model.Product;
 import com.example.etrade.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class ProductListServiceTest extends TestUtil {
@@ -30,6 +23,5 @@ public class ProductListServiceTest extends TestUtil {
     }
 
     //TODO 3 method
-
 
 }

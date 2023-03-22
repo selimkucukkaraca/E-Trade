@@ -19,14 +19,15 @@ class CategoryServiceTest extends TestUtil {
     private CategoryService categoryService;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         categoryRepository = mock(CategoryRepository.class);
         categoryConverter = mock(CategoryConverter.class);
-        categoryService = new CategoryService(categoryRepository,categoryConverter);
+        categoryService = new CategoryService(categoryRepository, categoryConverter);
     }
 
     @Test
-    public void saveCategory_itShouldReturnCategoryDto(){
+    public void saveCategory_itShouldReturnCategoryDto() {
+
         CreateCategoryRequest request = getCreateCategoryRequest();
         Category category = getCategoryList().get(0);
         CategoryDto categoryDto = getCategoryDtoList().get(0);
@@ -38,16 +39,18 @@ class CategoryServiceTest extends TestUtil {
 
         CategoryDto response = categoryService.save(request);
 
-        assertEquals(response,categoryDto);
+        assertEquals(response, categoryDto);
 
         verify(categoryConverter).toEntity(request);
         verify(categoryRepository).save(category);
         verify(categoryConverter).convertToDto(category);
         verify(categoryRepository).existsCategoryByCategoryName("test");
+
     }
 
     @Test
-    public void getByCategoryName_itShouldReturnCategory(){
+    public void getByCategoryName_itShouldReturnCategory() {
+
         Category category = getCategoryList().get(0);
         String categoryName = "test";
 
@@ -55,12 +58,14 @@ class CategoryServiceTest extends TestUtil {
 
         Category response = categoryService.getByCategoryName(categoryName);
 
-        assertEquals(response,category);
+        assertEquals(response, category);
         verify(categoryRepository).findCategoryByCategoryName(categoryName);
+
     }
 
     @Test
-    public void delete(){
+    public void delete() {
+
         Category category = getCategoryList().get(0);
         String categoryName = "Test";
 
@@ -69,10 +74,12 @@ class CategoryServiceTest extends TestUtil {
         categoryService.deleteCategory(categoryName);
 
         verify(categoryRepository).delete(category);
+
     }
 
     @Test
-    public void updateCategory(){
+    public void updateCategory() {
+
         Category category = getCategoryList().get(0);
 
         when(categoryRepository.save(category)).thenReturn(category);
@@ -80,6 +87,6 @@ class CategoryServiceTest extends TestUtil {
         categoryService.updateCategory(category);
 
         verify(categoryRepository).save(category);
-    }
 
+    }
 }

@@ -8,8 +8,6 @@ import com.example.etrade.model.PromoCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Objects;
-
 @Service
 public class BuyProductService {
 
@@ -41,8 +39,8 @@ public class BuyProductService {
         PromoCode code = promoCodeService.getByCodeText(confirmCartRequest.getCodeText().get());
         double productTotalPrice;
 
-            productTotalPrice = cart.getProduct()
-                    .stream().mapToDouble(Product::getProductPrice).sum() - code.getAmount();
+        productTotalPrice = cart.getProduct()
+                .stream().mapToDouble(Product::getProductPrice).sum() - code.getAmount();
 
 
         cart.getProduct()
@@ -59,6 +57,5 @@ public class BuyProductService {
                         }
                     }
                 });
-
-  }
+    }
 }

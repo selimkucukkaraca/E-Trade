@@ -21,14 +21,15 @@ class SellerCommentServiceTest extends TestUtil {
     private SellerCommentService sellerCommentService;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         sellerCommentRepository = mock(SellerCommentRepository.class);
         sellerCommentConverter = mock(SellerCommentConverter.class);
-        sellerCommentService = new SellerCommentService(sellerCommentRepository,sellerCommentConverter);
+        sellerCommentService = new SellerCommentService(sellerCommentRepository, sellerCommentConverter);
     }
 
     @Test
-    public void saveSellerComment_itShouldReturnSellerCommentDto(){
+    public void saveSellerComment_itShouldReturnSellerCommentDto() {
+
         CreateSellerCommentRequest request = getCreateSellerCommentRequest();
         SellerComment sellerComment = getSellerCommentList().get(0);
         SellerCommentDto sellerCommentDto = getSellerCommentDtoList().get(0);
@@ -39,7 +40,7 @@ class SellerCommentServiceTest extends TestUtil {
 
         SellerCommentDto response = sellerCommentService.save(request);
 
-        assertEquals(response,sellerCommentDto);
+        assertEquals(response, sellerCommentDto);
 
         verify(sellerCommentConverter).toEntity(request);
         verify(sellerCommentRepository).save(sellerComment);
@@ -48,7 +49,8 @@ class SellerCommentServiceTest extends TestUtil {
     }
 
     @Test
-    public void delete(){
+    public void delete() {
+
         SellerComment sellerComment = getSellerCommentList().get(0);
         String sellerCommentId = "test";
 
@@ -57,10 +59,12 @@ class SellerCommentServiceTest extends TestUtil {
         sellerCommentService.delete(sellerCommentId);
 
         verify(sellerCommentRepository).findSellerCommentBySellerCommentId(sellerCommentId);
+
     }
 
     @Test
-    public void getSellerBySellerCommentId_itShouldReturnSellerCommentDto(){
+    public void getSellerBySellerCommentId_itShouldReturnSellerCommentDto() {
+
         SellerComment sellerComment = getSellerCommentList().get(0);
         SellerCommentDto sellerCommentDto = getSellerCommentDtoList().get(0);
         String sellerCommentId = "test";
@@ -71,10 +75,9 @@ class SellerCommentServiceTest extends TestUtil {
 
         SellerCommentDto response = sellerCommentService.getSellerBySellerCommentId(sellerCommentId);
 
-        assertEquals(response,sellerCommentDto);
+        assertEquals(response, sellerCommentDto);
         verify(sellerCommentRepository).findSellerCommentBySellerCommentId(sellerCommentId);
         verify(sellerCommentConverter).convertToDto(sellerComment);
+
     }
-
-
 }

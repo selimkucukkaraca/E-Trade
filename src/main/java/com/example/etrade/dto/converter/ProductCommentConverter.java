@@ -23,7 +23,7 @@ public class ProductCommentConverter {
         this.productService = productService;
     }
 
-    public ProductCommentDto convertToDto(ProductComment from){
+    public ProductCommentDto convertToDto(ProductComment from) {
         return new ProductCommentDto(
                 from.getTitle(),
                 from.getBody(),
@@ -33,13 +33,13 @@ public class ProductCommentConverter {
         );
     }
 
-    public ProductComment toEntity(CreateProductCommentRequest request){
+    public ProductComment toEntity(CreateProductCommentRequest request) {
         return new ProductComment(
                 request.getTitle(),
                 request.getBody(),
                 request.getStar(),
                 userService.getUserByMail(request.getUserMail()),
                 productService.getProductObjectByProductId(request.getProductId())
-                );
+        );
     }
 }

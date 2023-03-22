@@ -16,24 +16,24 @@ public class BankAccountService {
         this.bankAccountRepository = bankAccountRepository;
     }
 
-    protected BankAccount save(BankAccount bankAccount){
+    protected BankAccount save(BankAccount bankAccount) {
         return bankAccountRepository.save(bankAccount);
     }
 
-    protected BankAccount getByCardNumber(String cardNumber){
+    protected BankAccount getByCardNumber(String cardNumber) {
         return bankAccountRepository.findBankAccountByCardNumber(cardNumber);
     }
 
     protected boolean validateCreditCard(ConfirmCartRequest request) {
         BankAccount bankAccount = bankAccountRepository.findBankAccountByCardNumber(request.getCardNumber());
 
-      if (bankAccount.getCardNumber().equals(request.getCardNumber())
-              && bankAccount.getCvv() == request.getCvv()
-              && bankAccount.getNameAndLastname().equals(request.getNameAndSurname())){
-             // && bankAccount.getExpirationDate().equals(request.getExpirationDate())) {
-          return true;
-      } else {
-          throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "card not valid");
-      }
+        if (bankAccount.getCardNumber().equals(request.getCardNumber())
+                && bankAccount.getCvv() == request.getCvv()
+                && bankAccount.getNameAndLastname().equals(request.getNameAndSurname())) {
+            // && bankAccount.getExpirationDate().equals(request.getExpirationDate())) {    //TODO
+            return true;
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "card not valid");
+        }
     }
 }

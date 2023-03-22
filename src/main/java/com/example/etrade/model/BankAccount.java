@@ -4,14 +4,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
+
+import java.util.Objects;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 public class BankAccount {
     @Id
@@ -23,11 +27,24 @@ public class BankAccount {
     private String expirationDate;
     private double balance;
 
-    public BankAccount(String cardNumber, String nameAndLastname, int cvv, String expirationDate,double balance) {
+    public BankAccount(String cardNumber, String nameAndLastname, int cvv, String expirationDate, double balance) {
         this.cardNumber = cardNumber;
         this.nameAndLastname = nameAndLastname;
         this.cvv = cvv;
         this.expirationDate = expirationDate;
         this.balance = balance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        BankAccount that = (BankAccount) o;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

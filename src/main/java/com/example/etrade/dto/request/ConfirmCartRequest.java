@@ -15,4 +15,5 @@ public class ConfirmCartRequest {
     private String userMail;
     private Optional<String> codeText;
     private CreateAddressRequest address;
+
 }

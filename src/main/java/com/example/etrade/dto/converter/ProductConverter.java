@@ -22,7 +22,7 @@ public class ProductConverter {
         this.categoryService = categoryService;
     }
 
-    public ProductDto convertToDto(Product from){
+    public ProductDto convertToDto(Product from) {
         return new ProductDto(
                 from.getProductName(),
                 from.getProductDetails(),
@@ -34,7 +34,7 @@ public class ProductConverter {
         );
     }
 
-    public Product toEntity(CreateProductRequest request){
+    public Product toEntity(CreateProductRequest request) {
         return new Product(
                 request.getProductName(),
                 request.getProductDetails(),

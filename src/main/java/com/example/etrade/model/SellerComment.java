@@ -25,7 +25,7 @@ public class SellerComment extends BaseEntity {
     private User user;
     private String sellerCommentId = UUID.randomUUID().toString();
 
-    public SellerComment(String title, String body, int star,Seller seller,User user) {
+    public SellerComment(String title, String body, int star, Seller seller, User user) {
         this.title = title;
         this.body = body;
         this.star = star;

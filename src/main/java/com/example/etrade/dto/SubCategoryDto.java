@@ -7,7 +7,8 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubCategoryDto extends BaseDto{
+public class SubCategoryDto extends BaseDto {
 
     private String subCategoryName;
+
 }

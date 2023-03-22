@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Brand extends BaseEntity{
+public class Brand extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

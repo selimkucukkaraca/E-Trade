@@ -19,14 +19,14 @@ public class SellerCommentController {
     }
 
     @PostMapping
-    public ResponseEntity<SellerCommentDto> save(@RequestBody CreateSellerCommentRequest request){
+    public ResponseEntity<SellerCommentDto> save(@RequestBody CreateSellerCommentRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(sellerCommentService.save(request));
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(@RequestParam String sellerCommentId){
+    public ResponseEntity<?> delete(@RequestParam String sellerCommentId) {
         sellerCommentService.delete(sellerCommentId);
         return ResponseEntity
                 .noContent()
@@ -34,7 +34,7 @@ public class SellerCommentController {
     }
 
     @GetMapping("/{sellerCommentId}")
-    public ResponseEntity<SellerCommentDto> getSellerBySellerCommentId(@PathVariable String sellerCommentId){
+    public ResponseEntity<SellerCommentDto> getSellerBySellerCommentId(@PathVariable String sellerCommentId) {
         return ResponseEntity
                 .ok(sellerCommentService.getSellerBySellerCommentId(sellerCommentId));
     }

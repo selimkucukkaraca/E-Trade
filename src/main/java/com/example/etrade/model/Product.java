@@ -11,7 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Product extends BaseEntity{
+public class Product extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,8 +29,8 @@ public class Product extends BaseEntity{
     @ManyToOne
     private Brand brand;
 
-    public Product(String productName,String productDetails,
-                   double productPrice,int stock, String productImageUrl,Category category,Brand brand) {
+    public Product(String productName, String productDetails,
+                   double productPrice, int stock, String productImageUrl, Category category, Brand brand) {
         this.productName = productName;
         this.productDetails = productDetails;
         this.productPrice = productPrice;

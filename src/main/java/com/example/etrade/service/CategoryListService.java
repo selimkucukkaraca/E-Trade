@@ -16,7 +16,7 @@ public class CategoryListService {
         this.categoryConverter = categoryConverter;
     }
 
-    public CategoryDto getCategoryByCategoryName(String categoryName){
+    public CategoryDto getCategoryByCategoryName(String categoryName) {
         return categoryConverter.convertToDto(categoryRepository.findCategoryByCategoryName(categoryName));
     }
 }

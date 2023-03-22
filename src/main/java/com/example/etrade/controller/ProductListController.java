@@ -19,21 +19,20 @@ public class ProductListController {
     }
 
     @GetMapping("/get-by-name/{productName}")
-    public ResponseEntity<List<ProductDto>> getProductByProductName(@PathVariable String productName){
+    public ResponseEntity<List<ProductDto>> getProductByProductName(@PathVariable String productName) {
         return ResponseEntity
                 .ok(productListService.getProductByProductName(productName));
     }
 
     @GetMapping("/get-by-brand/{brand}")
-    public ResponseEntity<List<ProductDto>> getProductByProductBrand(@PathVariable String brand){
+    public ResponseEntity<List<ProductDto>> getProductByProductBrand(@PathVariable String brand) {
         return ResponseEntity
                 .ok(productListService.getProductByProductBrand(brand));
     }
 
     @GetMapping("/get-by-price")
-    public ResponseEntity<List<ProductDto>> getProductByProductPrice(@RequestParam double min,@RequestParam double max){
+    public ResponseEntity<List<ProductDto>> getProductByProductPrice(@RequestParam double min, @RequestParam double max) {
         return ResponseEntity
-                .ok(productListService.getProductByProductPrice(min,max));
+                .ok(productListService.getProductByProductPrice(min, max));
     }
-
 }
