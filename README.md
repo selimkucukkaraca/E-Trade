@@ -15,8 +15,7 @@ E-Trade consists of an API through which customers and sellers can perform all t
 • With the credit card information registered in the database, customers can first add the product to the cart, then purchase, comment on the seller and the product, and get a discount with a promotional code.
 • Products can be filtered according to many criteria.
 ___
-the app has many api
-
+You can access the project APIs from the Postman Collection that I have uploaded.
 ___
 ## E-Trade
 <p>Technologies used in the construction of the project</p>
