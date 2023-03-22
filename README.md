@@ -1,3 +1,24 @@
+# E-Trade API For Customer and Seller
+___
+### Spring Boot Application
+
+---
+This project provides the business process required in the e-trade application for customer and seller.
+
+### Summary
+
+E-Trade consists of an API through which customers and sellers can perform all their main transactions.
+
+#### Requirements
+
+• Customers and Sellers confirm their e-mails to register with their personal information.
+
+• With the credit card information registered in the database, customers can first add the product to the cart, then purchase, comment on the seller and the product, and get a discount with a promotional code.
+
+• Products can be filtered according to many criteria.
+___
+You can access the project APIs from the Postman Collection that I have uploaded.
+___
 ## E-Trade
 <p>Technologies used in the construction of the project</p>
 <ul>
