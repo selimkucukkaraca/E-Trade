@@ -14,6 +14,8 @@ E-Trade consists of an API through which customers and sellers can perform all t
 • Customers and Sellers confirm their e-mails to register with their personal information.
 • With the credit card information registered in the database, customers can first add the product to the cart, then purchase, comment on the seller and the product, and get a discount with a promotional code.
 • Products can be filtered according to many criteria.
+___
+the app has many api
 
 ___
 ## E-Trade
