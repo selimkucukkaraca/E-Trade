@@ -51,7 +51,7 @@ class SellerServiceTest extends TestUtil {
 
         assertEquals(response, sellerDto);
         verify(sellerConverter).toEntity(request);
-        verify(sellerRepository.existsSellerByMail("test")); // TODO error
+        verify(sellerRepository).existsSellerByMail("test");
         verify(sellerRepository).save(seller);
         verify(sellerConverter).convertToDto(seller);
 
