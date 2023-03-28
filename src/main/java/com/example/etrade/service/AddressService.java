@@ -6,6 +6,9 @@ import com.example.etrade.dto.request.CreateAddressRequest;
 import com.example.etrade.exception.NotFoundException;
 import com.example.etrade.model.Address;
 import com.example.etrade.repository.AddressRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,16 +28,19 @@ public class AddressService {
         this.userService = userService;
     }
 
+    @CachePut(value = "addresses", key = "#request")
     public Address save(CreateAddressRequest request) {
         var saved = addressConverter.toEntity(request);
         return addressRepository.save(saved);
     }
 
+    @CacheEvict(value = "addresses", key = "#addressId")
     public void delete(String addressId) {
         var fromAddress = getAddress(addressId);
         addressRepository.delete(fromAddress);
     }
 
+    @Cacheable(value = "addresses", key = "#addressId")
     public AddressDto getAddressByAddressId(String addressId) {
         var address = addressRepository.findAddressByAddressId(addressId)
                 .orElseThrow(() -> new NotFoundException(""));

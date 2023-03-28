@@ -6,6 +6,8 @@ import com.example.etrade.dto.request.CreateCategoryRequest;
 import com.example.etrade.exception.generic.GenericExistException;
 import com.example.etrade.model.Category;
 import com.example.etrade.repository.CategoryRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +21,7 @@ public class CategoryService {
         this.categoryConverter = categoryConverter;
     }
 
+    @CachePut(value = "categories", key = "#request")
     public CategoryDto save(CreateCategoryRequest request) {
         var saved = categoryConverter.toEntity(request);
         if (categoryRepository.existsCategoryByCategoryName(saved.getCategoryName())) {
@@ -28,6 +31,7 @@ public class CategoryService {
         return categoryConverter.convertToDto(saved);
     }
 
+    @CacheEvict(value = "categories", key = "#categoryName")
     public void deleteCategory(String categoryName) {
         var category = getByCategoryName(categoryName);
         categoryRepository.delete(category);

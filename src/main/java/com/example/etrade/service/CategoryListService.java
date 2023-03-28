@@ -3,6 +3,7 @@ package com.example.etrade.service;
 import com.example.etrade.dto.CategoryDto;
 import com.example.etrade.dto.converter.CategoryConverter;
 import com.example.etrade.repository.CategoryRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +17,7 @@ public class CategoryListService {
         this.categoryConverter = categoryConverter;
     }
 
+    @Cacheable(value = "categories", key = "#categoryName")
     public CategoryDto getCategoryByCategoryName(String categoryName) {
         return categoryConverter.convertToDto(categoryRepository.findCategoryByCategoryName(categoryName));
     }
