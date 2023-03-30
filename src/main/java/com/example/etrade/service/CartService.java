@@ -5,6 +5,8 @@ import com.example.etrade.dto.converter.CartConverter;
 import com.example.etrade.model.Cart;
 import com.example.etrade.model.Product;
 import com.example.etrade.repository.CartRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +27,7 @@ public class CartService {
         this.productService = productService;
     }
 
+    @CachePut(value = "carts", key = "#productId")
     public CartDto save(String mail, String productId) {
         var fromUser = userService.getUserByMail(mail);
         var fromProduct = productService.getProductObjectByProductId(productId);
@@ -41,6 +44,7 @@ public class CartService {
         return cartRepository.findCartByCartId(cartId);
     }
 
+    @CacheEvict(value = "carts", key = "#cartId")
     public void deleteByCartId(String cartId) {
         var fromCart = getCart(cartId);
         cartRepository.delete(fromCart);

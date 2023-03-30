@@ -5,6 +5,8 @@ import com.example.etrade.dto.converter.SubCategoryConverter;
 import com.example.etrade.dto.request.CreateSubCategoryRequest;
 import com.example.etrade.exception.generic.GenericExistException;
 import com.example.etrade.repository.SubCategoryRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,6 +23,7 @@ public class SubCategoryService {
         this.categoryService = categoryService;
     }
 
+    @CachePut(value = "subCategories", key = "#request")
     public SubCategoryDto save(CreateSubCategoryRequest request) {
         var category = categoryService.getByCategoryName(request.getCategoryName());
         var saved = subCategoryConverter.toEntity(request);
@@ -35,6 +38,7 @@ public class SubCategoryService {
         return subCategoryConverter.convertToDto(saved);
     }
 
+    @CacheEvict(value = "subCategories", key = "#subCategoryName")
     public void delete(String subCategoryName) {
         var subCategory = subCategoryRepository.findSubCategoryBySubCategoryName(subCategoryName);
         subCategoryRepository.delete(subCategory);

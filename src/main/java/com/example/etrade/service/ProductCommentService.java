@@ -7,6 +7,9 @@ import com.example.etrade.exception.NotFoundException;
 import com.example.etrade.exception.generic.GenericExistException;
 import com.example.etrade.model.ProductComment;
 import com.example.etrade.repository.ProductCommentRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,6 +24,7 @@ public class ProductCommentService {
         this.productCommentConverter = productCommentConverter;
     }
 
+    @CachePut(value = "productComments", key = "#request")
     public ProductCommentDto save(CreateProductCommentRequest request) {
         var saved = productCommentConverter.toEntity(request);
         if (request.getStar() < 0) {
@@ -30,16 +34,19 @@ public class ProductCommentService {
         return productCommentConverter.convertToDto(saved);
     }
 
+    @CacheEvict(value = "productComments", key = "#productCommentId")
     public void delete(String productCommentId) {
         var productComment = getProductCommentByProductCommentId(productCommentId);
         productCommentRepository.delete(productComment);
     }
 
+    @Cacheable(value = "productComments", key = "#productCommentId")
     public ProductComment getProductCommentByProductCommentId(String productCommentId) {
         return productCommentRepository.findProductCommentByProductCommentId(productCommentId)
                 .orElseThrow(() -> new NotFoundException(""));
     }
 
+    @Cacheable(value = "productComments", key = "#productCommentId")
     public ProductCommentDto getByProductCommentId(String productCommentId) {
         var productComment = productCommentRepository
                 .findProductCommentByProductCommentId(productCommentId)

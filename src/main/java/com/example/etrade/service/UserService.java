@@ -9,6 +9,9 @@ import com.example.etrade.model.ConfirmCode;
 import com.example.etrade.model.User;
 import com.example.etrade.repository.UserRepository;
 import com.example.etrade.util.MailSendService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import static com.example.etrade.util.MailConstant.CONFIRM_CODE_DESCRIPTION;
@@ -31,6 +34,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    @CachePut(value = "users", key = "#request")
     public UserDto save(CreateUserRequest request) {
         var saved = userConverter.toEntity(request);
         if (userRepository.existsUserByMail(saved.getMail())) {
@@ -40,16 +44,19 @@ public class UserService {
         return userConverter.convertToDto(saved);
     }
 
+    @CacheEvict(value = "users", key = "#mail")
     public void delete(String mail) {
         var fromUser = getUserByMail(mail);
         userRepository.delete(fromUser);
     }
 
+    @Cacheable(value = "users", key = "#mail")
     public User getUserByMail(String mail) {
         return userRepository.findUserByMail(mail)
                 .orElseThrow(() -> new NotFoundException(""));
     }
 
+    @Cacheable(value = "users", key = "#mail")
     public UserDto getByMail(String mail) {
         var fromDbUser = userRepository.findUserByMail(mail)
                 .orElseThrow(() -> new NotFoundException("Mail not found: " + mail));

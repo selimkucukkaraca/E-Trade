@@ -4,6 +4,7 @@ import com.example.etrade.dto.ProductDto;
 import com.example.etrade.dto.converter.ProductConverter;
 import com.example.etrade.model.Brand;
 import com.example.etrade.repository.ProductRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class ProductListService {
         this.brandService = brandService;
     }
 
+    @Cacheable(value = "productLists", key = "#productName")
     public List<ProductDto> getProductByProductName(String productName) {
         return productRepository.findProductByProductName(productName)
                 .stream()
@@ -31,7 +33,7 @@ public class ProductListService {
                 .collect(Collectors.toList());
     }
 
-
+    @Cacheable(value = "productLists", key = "#min and #max")
     public List<ProductDto> getProductByProductPrice(double min, double max) {
         return productRepository.findAll()
                 .stream()
@@ -42,6 +44,7 @@ public class ProductListService {
                 .collect(Collectors.toList());
     }
 
+    @Cacheable(value = "productLists", key = "#brand")
     public List<ProductDto> getProductByProductBrand(String brand) {
         Brand fromDbBrand = brandService.getBrandByBrand(brand);
         return productRepository.getProductByBrand(fromDbBrand)

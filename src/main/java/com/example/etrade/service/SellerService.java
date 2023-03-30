@@ -10,6 +10,9 @@ import com.example.etrade.model.Seller;
 import com.example.etrade.repository.ConfirmCodeRepository;
 import com.example.etrade.repository.SellerRepository;
 import com.example.etrade.util.MailSendService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import static com.example.etrade.util.MailConstant.CONFIRM_CODE_DESCRIPTION;
@@ -34,6 +37,7 @@ public class SellerService {
         this.sellerRepository = sellerRepository;
     }
 
+    @CachePut(value = "sellers", key = "#request")
     public SellerDto save(CreateSellerRequest request) {
         var saved = sellerConverter.toEntity(request);
         if (sellerRepository.existsSellerByMail(saved.getMail())) {
@@ -43,16 +47,19 @@ public class SellerService {
         return sellerConverter.convertToDto(saved);
     }
 
+    @CacheEvict(value = "sellers", key = "#mail")
     public void delete(String mail) {
         var fromSeller = getSellerByMail(mail);
         sellerRepository.delete(fromSeller);
     }
 
+    @Cacheable(value = "sellers", key = "#mail")
     public Seller getSellerByMail(String mail) {
         return sellerRepository.findSellerByMail(mail)
                 .orElseThrow(() -> new NotFoundException(""));
     }
 
+    @Cacheable(value = "sellers", key = "#mail")
     public SellerDto getByMail(String mail) {
         var fromDbSeller = sellerRepository.findSellerByMail(mail)
                 .orElseThrow(() -> new NotFoundException("Mail not found: " + mail));

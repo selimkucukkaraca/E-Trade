@@ -47,6 +47,7 @@ public class AddressService {
         return addressConverter.convertToDto(address);
     }
 
+    @Cacheable(value = "addresses", key = "#mail")
     public List<AddressDto> getAddressListByUserMail(String mail) {
         var fromUser = userService.getUserByMail(mail);
         return fromUser.getAddress()
@@ -55,6 +56,7 @@ public class AddressService {
                 .collect(Collectors.toList());
     }
 
+    @Cacheable(value = "addresses", key = "#addressId")
     public Address getAddress(String addressId) {
         return addressRepository.getAddressByAddressId(addressId)
                 .orElseThrow(() -> new RuntimeException(""));

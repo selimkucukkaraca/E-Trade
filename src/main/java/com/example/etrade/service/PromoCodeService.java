@@ -4,6 +4,9 @@ import com.example.etrade.dto.PromoCodeDto;
 import com.example.etrade.dto.request.CreatePromoCodeRequest;
 import com.example.etrade.model.PromoCode;
 import com.example.etrade.repository.PromoCodeRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -19,6 +22,7 @@ public class PromoCodeService {
         this.userService = userService;
     }
 
+    @CachePut(value = "promoCodes", key = "#request")
     public PromoCodeDto save(CreatePromoCodeRequest request) {
         PromoCode promoCode = new PromoCode(
                 request.getCode(),
@@ -34,16 +38,19 @@ public class PromoCodeService {
         return toDto(promoCode);
     }
 
+    @Cacheable(value = "promoCodes", key = "#publicId")
     public PromoCode getByPublicId(String publicId) {
         return promoCodeRepository.findPromoCodeByPublicId(publicId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "promo code not found"));
     }
 
+    @CacheEvict(value = "promoCodes", key = "#publicId")
     public void delete(String publicId) {
         PromoCode fromDbCode = getByPublicId(publicId);
         promoCodeRepository.delete(fromDbCode);
     }
 
+    @Cacheable(value = "promoCodes", key = "#codeText")
     public PromoCode getByCodeText(String codeText) {
         return promoCodeRepository.findPromoCodeByCodeText(codeText)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "promo code not found"));

@@ -8,6 +8,7 @@ import com.example.etrade.model.Category;
 import com.example.etrade.repository.CategoryRepository;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,6 +38,7 @@ public class CategoryService {
         categoryRepository.delete(category);
     }
 
+    @Cacheable(value = "categories", key = "#categoryName")
     public Category getByCategoryName(String categoryName) {
         return categoryRepository.findCategoryByCategoryName(categoryName);
     }
