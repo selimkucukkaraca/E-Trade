@@ -23,14 +23,13 @@ ___
 <p>Technologies used in the construction of the project</p>
 <ul>
   <li>Spring Boot</li>
-  <li>H2 Database</li>
   <li>MySQL Database</li>
   <li>Hibernate</li>
   <li>Spring Security</li>
   <li>Spring Data</li>
   <li>Lombok</li>
-  <li>Dockerfile</li>
-  <li>JUnit</li>
+  <li>Docker</li>
+  <li>JUnit5</li>
   <li>Mockito</li>
 <li>Java Mail Sender</li>
 </ul>
