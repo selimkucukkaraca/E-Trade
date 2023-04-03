@@ -46,9 +46,4 @@ class BankAccountServiceTest extends TestUtil {
         verify(bankAccountRepository).findBankAccountByCardNumber(cardNumber);
 
     }
-
-    @Test
-    public void validateCreditCard() {
-        //TODO
-    }
 }

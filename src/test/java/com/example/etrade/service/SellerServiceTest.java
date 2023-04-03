@@ -127,11 +127,9 @@ class SellerServiceTest extends TestUtil {
 
     @Test
     public void sendConfirmCode() {
-        //TODO
     }
 
     @Test
     public void activeSeller_itShouldReturnSellerDto() {
-        //TODO
     }
 }

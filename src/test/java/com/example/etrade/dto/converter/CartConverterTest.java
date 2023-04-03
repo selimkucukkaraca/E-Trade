@@ -19,10 +19,4 @@ class CartConverterTest extends TestUtil {
         userConverter = mock(UserConverter.class);
         cartConverter = mock(CartConverter.class);
     }
-
-    @Test
-    public void convertToDto_itShouldReturnCartDto(){
-        //TODO
-    }
-
 }

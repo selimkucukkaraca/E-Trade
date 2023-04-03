@@ -34,12 +34,6 @@ class CartServiceTest extends TestUtil {
         cartService = new CartService(cartRepository, cartConverter, userService, productService);
     }
 
-
-    @Test
-    public void saveCart_itShouldReturnCartDto() {
-        //TODO
-    }
-
     @Test
     public void getCart_itShouldReturnCart() {
 

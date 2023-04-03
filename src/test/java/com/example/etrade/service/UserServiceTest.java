@@ -123,12 +123,10 @@ class UserServiceTest extends TestUtil {
 
     @Test
     public void sendConfirmCode() {
-        //TODO
     }
 
     @Test
     public void activeUser_itShouldReturnUserDto() {
-        //TODO
     }
 
 }

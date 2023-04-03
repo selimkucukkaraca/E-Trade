@@ -83,11 +83,6 @@ class AddressServiceTest extends TestUtil {
     }
 
     @Test
-    public void getAddressListByUserMail_itShouldReturnAddressDtoList() {
-        //TODO
-    }
-
-    @Test
     public void getAddress_itShouldReturnAddress() {
 
         Address address = getAddressList().get(0);

@@ -33,7 +33,6 @@ class SubCategoryServiceTest extends TestUtil {
 
     @Test
     public void saveSubCategory_itShouldReturnSubCategoryDto() {
-        //TODO
     }
 
     @Test
